@@ -22,7 +22,7 @@ const Product = mongoose.model("Product", {
 		trim: true,
 	},
 	category: {
-		type: String,
+		type: mongoose.Schema.Types.ObjectId,
 		required: true,
 		minlength: 1,
 	},

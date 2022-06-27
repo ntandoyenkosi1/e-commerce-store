@@ -3,6 +3,7 @@ const product = require("../models/product");
 const getAllProducts = (req, res) => {
 	product
 		.find()
+		.populate("category")
 		.then((products) => {
 			res.send(products);
 		})
@@ -17,7 +18,7 @@ const getAllProducts = (req, res) => {
 
 const getProductById = (req, res) => {
 	product
-		.findById(req.params.productId)
+		.findById(req.params.productId).populate("category")
 		.then((product) => {
 			if (!product) {
 				return res.status(404).send({

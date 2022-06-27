@@ -1,7 +1,7 @@
 const Shipping = require("../models/shipping");
 
 const getAllShipping = async (req, res) => {
-	const shipping = await Shipping.find();
+	const shipping = await Shipping.find().populate("user").populate("sale");
 	res.json(shipping);
 };
 const getShippingById = async (req, res) => {
