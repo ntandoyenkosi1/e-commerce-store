@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Shipping = mongoose.model("Shipping", {
     method: {
         type: String,
-        required: true
+        required: [true, "Shipping method is required"],
     },
     address: {
         type: String,
@@ -30,7 +30,7 @@ const Shipping = mongoose.model("Shipping", {
     },
     complete: {
         type: Boolean,
-        required: true
+        default: false
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
