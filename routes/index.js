@@ -5,8 +5,8 @@ const product = require("../controllers/productController");
 const sale = require("../controllers/saleController");
 const payment = require("../controllers/paymentController");
 const shipping = require("../controllers/shippingController");
-const { admin, client } = require("../auth/middleware/roles")
-const auth = require("../auth/middleware/auth")
+const { admin, client } = require("../middleware/roles")
+const auth = require("../middleware/auth")
 const router=app()
 // Users routes
 router.get("/api/users",[auth,client], user.findAllUsers);

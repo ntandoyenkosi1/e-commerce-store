@@ -5,40 +5,50 @@ const getAllProducts = (req, res) => {
 		.find()
 		.populate("category")
 		.then((products) => {
-			res.send(products);
+			res.send({ ok: true, data: products });
 		})
 		.catch((err) => {
 			res.status(500).send({
-				message:
-					err.message ||
-					"Some error occurred while retrieving products.",
+				ok: false,
+				error: err,
 			});
 		});
 };
 
 const getProductById = (req, res) => {
 	product
-		.findById(req.params.productId).populate("category")
+		.findById(req.params.productId)
+		.populate("category")
 		.then((product) => {
 			if (!product) {
-				return res.status(404).send({
-					message:
-						"Product not found with id " + req.params.productId,
-				});
+				return res
+					.status(404)
+					.send({
+						ok: false,
+						error:
+							"Product not found with id " + req.params.productId,
+					});
 			}
-			res.send(product);
+			res.send({ ok: true, data: product });
 		})
 		.catch((err) => {
 			if (err.kind === "ObjectId") {
-				return res.status(404).send({
-					message:
-						"Product not found with id " + req.params.productId,
-				});
+				return res
+					.status(404)
+					.send({
+						ok: false,
+						error:
+							"Product not found with id " + req.params.productId,
+					});
 			}
-			return res.status(500).send({
-				message:
-					"Error retrieving product with id " + req.params.productId,
-			});
+			return res
+				.status(500)
+				.send({
+					ok: false,
+					error:
+						"Error retrieving product with id " +
+						req.params.productId,
+				});
 		});
 };
 
@@ -52,22 +62,21 @@ const createProduct = (req, res) => {
 	});
 	Product.save()
 		.then((data) => {
-			res.send(data);
+			res.send({ ok: true, data: data });
 		})
 		.catch((err) => {
 			res.status(500).send({
-				message:
-					err.message ||
-					"Some error occurred while creating the Product.",
+				ok: false,
+				error: err,
 			});
 		});
 };
 
 const updateProduct = (req, res) => {
 	if (!req.body) {
-		return res.status(400).send({
-			message: "Product content can not be empty",
-		});
+		return res
+			.status(400)
+			.send({ ok: false, error: "Product content can not be empty" });
 	}
 	product
 		.findByIdAndUpdate(
@@ -83,24 +92,34 @@ const updateProduct = (req, res) => {
 		)
 		.then((product) => {
 			if (!product) {
-				return res.status(404).send({
-					message:
-						"Product not found with id " + req.params.productId,
-				});
+				return res
+					.status(404)
+					.send({
+						ok: false,
+						error:
+							"Product not found with id " + req.params.productId,
+					});
 			}
-			res.send(product);
+			res.send({ ok: true, data: product });
 		})
 		.catch((err) => {
 			if (err.kind === "ObjectId") {
-				return res.status(404).send({
-					message:
-						"Product not found with id " + req.params.productId,
-				});
+				return res
+					.status(404)
+					.send({
+						ok: false,
+						error:
+							"Product not found with id " + req.params.productId,
+					});
 			}
-			return res.status(500).send({
-				message:
-					"Error updating product with id " + req.params.productId,
-			});
+			return res
+				.status(500)
+				.send({
+					ok: false,
+					error:
+						"Error updating product with id " +
+						req.params.productId,
+				});
 		});
 };
 
@@ -109,24 +128,34 @@ const deleteProduct = (req, res) => {
 		.findByIdAndRemove(req.params.productId)
 		.then((product) => {
 			if (!product) {
-				return res.status(404).send({
-					message:
-						"Product not found with id " + req.params.productId,
-				});
+				return res
+					.status(404)
+					.send({
+						ok: false,
+						error:
+							"Product not found with id " + req.params.productId,
+					});
 			}
-			res.send({ message: "Product deleted successfully!" });
+			res.send({ ok: true, message: "Product deleted successfully!" });
 		})
 		.catch((err) => {
 			if (err.kind === "ObjectId" || err.name === "NotFound") {
-				return res.status(404).send({
-					message:
-						"Product not found with id " + req.params.productId,
-				});
+				return res
+					.status(404)
+					.send({
+						ok: false,
+						error:
+							"Product not found with id " + req.params.productId,
+					});
 			}
-			return res.status(500).send({
-				message:
-					"Could not delete product with id " + req.params.productId,
-			});
+			return res
+				.status(500)
+				.send({
+					ok: false,
+					error:
+						"Could not delete product with id " +
+						req.params.productId,
+				});
 		});
 };
 module.exports = {

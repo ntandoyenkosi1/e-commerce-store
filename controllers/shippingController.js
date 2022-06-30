@@ -2,11 +2,11 @@ const Shipping = require("../models/shipping");
 
 const getAllShipping = async (req, res) => {
 	const shipping = await Shipping.find().populate("user").populate("sale");
-	res.json(shipping);
+	res.json({ ok: true, data: shipping });
 };
 const getShippingById = async (req, res) => {
 	const shipping = await Shipping.findById(req.params.shippingId);
-	res.json(shipping);
+	res.json({ ok: true, data: shipping });
 };
 const createShipping = (req, res) => {
 	const shipping = new Shipping({
@@ -26,10 +26,10 @@ const createShipping = (req, res) => {
 	shipping
 		.save()
 		.then((data) => {
-			res.json(data);
+			res.json({ ok: true, data: data });
 		})
 		.catch((err) => {
-			res.json({ message: err });
+			res.json({ok:false, error: err });
 		});
 };
 const updateShippingStatus = async (req, res) => {
@@ -42,7 +42,7 @@ const updateShippingStatus = async (req, res) => {
 			new: true,
 		}
 	);
-	res.json(shipping);
+	res.json({ ok: true, data: shipping })
 };
 const updateShipping = async (req, res) => {
 	if (!req.body) {
@@ -70,11 +70,11 @@ const updateShipping = async (req, res) => {
 			new: true,
 		}
 	);
-	res.json(shipping);
+	res.json({ ok: true, data: shipping });
 };
 const deleteShipping = async (req, res) => {
 	await Shipping.findByIdAndRemove(req.params.shippingId);
-	res.json({ message: "Shipping deleted" });
+	res.json({ok:true, message: "Shipping deleted" });
 };
 module.exports = {
 	getAllShipping,
