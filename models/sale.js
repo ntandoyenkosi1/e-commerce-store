@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const Sale = mongoose.model("Sale", {
 	productId: {
 		type: mongoose.Schema.Types.ObjectId,

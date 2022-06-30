@@ -18,5 +18,10 @@ const User = mongoose.model("User", {
 		required: true,
 		minlength: [4, "Password must be at least 4 characters long"],
 	},
+	roles: {
+		type: Array,
+		required: true,
+		default:["client"]
+	}
 });
 module.exports = User;
