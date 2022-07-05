@@ -5,6 +5,7 @@ const product = require("../controllers/productController");
 const sale = require("../controllers/saleController");
 const payment = require("../controllers/paymentController");
 const shipping = require("../controllers/shippingController");
+const cart = require("../controllers/cartController");
 const { admin, client } = require("../middleware/roles")
 const auth = require("../middleware/auth")
 const router=app()
@@ -46,4 +47,10 @@ router.delete("/api/shipping/:shippingId",[auth,client], shipping.deleteShipping
 // auth
 router.post("/api/login", user.login)
 router.post("/api/signup", user.signUp)
+// cart
+router.get("/api/carts", cart.getAllCarts);
+router.get("/api/carts/:cartId", [auth, client], cart.getCartById);
+router.post("/api/carts", cart.createCart);
+router.put("/api/carts/:cartId", cart.updateCart);
+router.delete("/api/carts/:cartId", cart.deleteCart);
 module.exports = router;
