@@ -13,6 +13,7 @@ import CreateCategory from "./components/Category/CreateCategory"
 import DeleteCategory from "./components/Category/DeleteCategory"
 import EditCategory from "./components/Category/EditCategory"
 import Orders from "./components/Orders/Orders"
+import Order from "./components/Orders/Order"
 import Profile from "./components/User/Profile"
 import './styles.css'
 import Header from "./components/Header"
@@ -32,6 +33,8 @@ function App() {
         <Route path='/category/create' element={<CreateCategory />} />
         <Route path='/category/delete/:id' element={<DeleteCategory />} />
         <Route path='/category/edit/:id' element={<EditCategory />} />
+        <Route path='/orders' element={<Orders />} />
+        <Route path='/orders/:id' element={<Order />} />
         <Route path='/login' element={<Login />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/profile' element={<Profile />} />
