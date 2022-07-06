@@ -33,13 +33,11 @@ const Shipping = mongoose.model("Shipping", {
 		default: false,
 	},
 	user: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "User",
+		type: [{type:mongoose.Schema.Types.ObjectId, ref:'User'}],
 		required: true,
 	},
 	sale: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "Sale",
+		type: [{type:mongoose.Schema.Types.ObjectId, ref:'Sale'}],
 		required: true,
 	},
 	date: {

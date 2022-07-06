@@ -2,8 +2,8 @@ const sale = require("../models/sale");
 
 const getAllSales = (req, res) => {
 	sale.find()
-		.populate("userId")
-		.populate("productId")
+		.populate("user")
+		.populate("product")
 		.then((sales) => {
 			res.send({ ok: true, data: sales });
 		})
@@ -17,7 +17,8 @@ const getAllSales = (req, res) => {
 
 const getSalesByUserId = (req, res) => {
 	sale.find({ userId: req.params.userId })
-		.populate("productId")
+		.populate("product")
+		.populate("user")
 		.then((sales) => {
 			if (!sales) {
 				return res
@@ -50,8 +51,8 @@ const getSalesByUserId = (req, res) => {
 };
 const createSale = (req, res) => {
 	const Sale = new sale({
-		userId: req.body.userId,
-		productId: req.body.productId,
+		user: req.body.user,
+		product: req.body.product,
 		quantity: req.body.quantity,
 		price: req.body.price,
 	});

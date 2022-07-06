@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Sale = mongoose.model("Sale", {
-	productId: {
-		type: mongoose.Schema.Types.ObjectId,
+	product: {
+		type: [{type:mongoose.Schema.Types.ObjectId, ref:'Product'}],
 		required: [true, "Product ID is required"],
 		minlength: 1,
 		trim: true,
@@ -21,8 +21,8 @@ const Sale = mongoose.model("Sale", {
 		type: Date,
 		default: Date.now,
 	},
-	userId: {
-		type: mongoose.Schema.Types.ObjectId,
+	user: {
+		type: [{type:mongoose.Schema.Types.ObjectId, ref:'User'}],
 		required: true,
 		minlength: 1,
 		trim: true,

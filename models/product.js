@@ -22,7 +22,7 @@ const Product = mongoose.model("Product", {
 		trim: true,
 	},
 	category: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: [{type:mongoose.Schema.Types.ObjectId, ref:'Category'}],
 		required: true,
 		minlength: 1,
 	},
