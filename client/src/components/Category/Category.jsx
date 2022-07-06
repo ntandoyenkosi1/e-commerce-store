@@ -7,7 +7,7 @@ const Category = (props) => {
 	const navigate=useNavigate()
 	useEffect(() => {
 		var myHeaders = new Headers();
-	var token=localStorage.getItem("x-auth-token")
+	var token=localStorage.getItem("token")
 	myHeaders.append("x-auth-token", token);
 
 	var requestOptions = {

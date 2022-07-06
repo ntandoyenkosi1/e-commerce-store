@@ -29,7 +29,7 @@ const Login = () => {
 			.then((result) => {
 				if (result.ok) {
 					alert("You have successfully logged in");
-					localStorage.setItem("x-auth-token", result.token);
+					localStorage.setItem("token", result.token);
 					return;
 				} else {
 				}

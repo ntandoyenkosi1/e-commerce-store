@@ -15,8 +15,10 @@ import EditCategory from "./components/Category/EditCategory"
 import Orders from "./components/Orders/Orders"
 import Order from "./components/Orders/Order"
 import Profile from "./components/User/Profile"
+import Cart from "./components/Cart/Cart"
 import './styles.css'
 import Header from "./components/Header"
+import Checkout from "./components/Cart/Checkout"
 function App() {
   return (
     <BrowserRouter>
@@ -37,7 +39,9 @@ function App() {
         <Route path='/orders/:id' element={<Order />} />
         <Route path='/login' element={<Login />} />
         <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile/:id' element={<Profile />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/cart/checkout' element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   )

@@ -6,7 +6,7 @@ const DeleteCategory = () => {
 	const navigate=useNavigate()
 	useEffect(() => {
 		var myHeaders = new Headers();
-		var token = localStorage.getItem("x-auth-token");
+		var token = localStorage.getItem("token");
 		myHeaders.append("x-auth-token", token);
 		myHeaders.append("Content-Type", "application/json");
 		var requestOptions = {
@@ -28,7 +28,7 @@ const DeleteCategory = () => {
 	}, [])
 	function handleDelete() {
 		var myHeaders = new Headers();
-		var token = localStorage.getItem("x-auth-token");
+		var token = localStorage.getItem("token");
 		myHeaders.append("x-auth-token", token);
 		myHeaders.append("Content-Type", "application/json");
 		var requestOptions = {

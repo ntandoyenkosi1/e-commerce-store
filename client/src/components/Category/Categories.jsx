@@ -11,8 +11,9 @@ const Categories = () => {
 	console.log(state, "state");
 	useEffect(() => {
 		var myHeaders = new Headers();
-		var token = localStorage.getItem("x-auth-token");
+		var token = localStorage.getItem("token");
 		myHeaders.append("x-auth-token", token);
+
 		var requestOptions = {
 			method: "GET",
 			headers: myHeaders,
@@ -22,6 +23,7 @@ const Categories = () => {
 		fetch("http://localhost:3001/api/categories", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
+				console.log(result);
 				if (result.ok) {
 					setCategories(result.data);
 				}

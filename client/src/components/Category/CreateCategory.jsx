@@ -6,7 +6,7 @@ const CreateCategory = () => {
 			return alert("Enter name");
 		}
 		var myHeaders = new Headers();
-		var token = localStorage.getItem("x-auth-token");
+		var token = localStorage.getItem("token");
 		myHeaders.append("x-auth-token", token);
 		myHeaders.append("Content-Type", "application/json");
 
