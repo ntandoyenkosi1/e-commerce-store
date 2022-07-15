@@ -21,7 +21,13 @@ const login = (req, res) => {
 			}, `${process.env.JWT_SECRET_KEY}`, { expiresIn: "30m", })
 			res.status(200).send({
 				ok: true,
-				token: token
+				token: token,
+				data: {
+					id: user[0]._id,
+					email: user[0].email,
+					name:user[0].name,
+					roles:user[0].roles
+				}
 			})
 		})
 }
