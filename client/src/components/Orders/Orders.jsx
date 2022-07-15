@@ -49,6 +49,7 @@ const Orders = () => {
 	return (
 		<>
 			<h1>Orders</h1>
+			<h4>View Orders</h4>
 			{orders.map((item, key) => {
 				return (
 					<div key={key}>

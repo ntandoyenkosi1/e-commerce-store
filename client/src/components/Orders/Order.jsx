@@ -28,11 +28,12 @@ const Order = () => {
 			{order.product && (
 				<div>
 					<h1>Order</h1>
-					<div>Name {order?.product[0]?.name}</div>
-					<div>Price {order?.product[0]?.price}</div>
-					<div>Description {order?.product[0]?.description}</div>
-					<div>Quantity {order?.quantity}</div>
-					<div>Date {order?.date}</div>
+					<h4><b>Your order details</b></h4>
+					<div><b>Name:</b> {order?.product[0]?.name}</div>
+					<div><b>Price:</b> {order?.product[0]?.price}</div>
+					<div><b>Description:</b> {order?.product[0]?.description}</div>
+					<div><b>Quantity:</b> {order?.quantity}</div>
+					<div><b>Date:</b> {order?.date}</div>
 				</div>
 			)}
 		</>
