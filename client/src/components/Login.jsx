@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button, Input } from "@mui/material";
+import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("password");
@@ -40,8 +42,13 @@ const Login = () => {
 	}
 	return (
 		<>
-			<h1>Login</h1>
-			<div>
+			<div className="logo">
+				<LockTwoToneIcon color="secondary" fontSize="large" />
+				</div>
+			<h1>
+				
+				Login</h1>
+			<div className="input-text">
 				<Input color="secondary" 
 					type='text'
 					id='email'
@@ -50,10 +57,12 @@ const Login = () => {
 					}
 					value={email}
 					placeholder='Email'
+					fullWidth
 				/>
 			</div>
-			<div>
+			<div className="input-text" >
 				<Input color="secondary" 
+					fullWidth
 					type='password'
 					id='password'
 					onChange={() =>
@@ -63,7 +72,7 @@ const Login = () => {
 					placeholder='Password'
 				/>
 			</div>
-			<Button variant="contained" color="secondary" onClick={handleLogin}>Login</Button>
+			<Button variant="contained" color="secondary" onClick={handleLogin}><LoginOutlinedIcon/>Login</Button>
 		</>
 	);
 };

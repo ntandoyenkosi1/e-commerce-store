@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Stack } from "@mui/material";
-import { CardGroup, Card } from "react-bootstrap";
+import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
+import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 const Products = () => {
 	const [products, setProducts] = useState([]);
 	const [role, setRole] = useState([]);
@@ -98,6 +102,7 @@ const Products = () => {
 										)
 									}
 								>
+									<FavoriteBorderTwoToneIcon/>
 									Buy
 								</Button>
 								<Button
@@ -107,16 +112,21 @@ const Products = () => {
 										handleAddToCart(item._id, item.price)
 									}
 								>
+									<AddShoppingCartRoundedIcon />
 									Add To Cart
 								</Button>
 							</div>
-							<Link to={`/products/${item._id}`}>View</Link>{" "}
+							<Link to={`/products/${item._id}`}>
+								<VisibilityOutlinedIcon/>
+								View</Link>{" "}
 							{role.roles.includes("admin") && (
 								<>
 									<Link to={`/products/edit/${item._id}`}>
+										<EditOutlinedIcon/>
 										Edit
 									</Link>
 									<Link to={`/products/delete/${item._id}`}>
+										<DeleteOutlinedIcon/>
 										Delete
 									</Link>
 								</>

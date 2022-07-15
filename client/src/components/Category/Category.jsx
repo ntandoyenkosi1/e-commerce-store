@@ -1,6 +1,8 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 const Category = (props) => {
 	const [category, setCategory] = useState([])
 	const [role, setRole] = useState([])
@@ -36,6 +38,9 @@ const Category = (props) => {
 	}, []);
 	return (
 		<>
+			<div className="logo" >
+				<WysiwygIcon color="secondary" fontSize="large"/>
+			</div>
 			<div>
 				<h1>Category</h1>
 				<div>
@@ -43,8 +48,12 @@ const Category = (props) => {
 				</div>
 				{role.roles && role.roles.includes("admin") && (
 					<>
-				<button onClick={() => navigate(`/category/edit/${id}`)}>Edit</button>
-						<Link to={`/category/delete/${id}`}>Delete</Link>
+						<button onClick={() => navigate(`/category/edit/${id}`)}>
+							<EditOutlinedIcon />
+							Edit</button>
+						<Link to={`/category/delete/${id}`}>
+							<DeleteOutlinedIcon />
+							Delete</Link>
 						</>
 				)}
 			</div>

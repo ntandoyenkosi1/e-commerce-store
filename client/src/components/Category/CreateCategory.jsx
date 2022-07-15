@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 const CreateCategory = () => {
 	const [name, setName] = useState("");
 	function handleSave() {
@@ -36,9 +38,14 @@ const CreateCategory = () => {
 	}
 	return (
 		<>
+			<div className="icon">
+				<AddCircleIcon color="secondary" fontSize="large" />
+			</div>
 			<h1>Add new category</h1>
 			<div>
-			<TextField variant="standard" label="Category name"
+				<TextField
+					variant='standard'
+					label='Category name'
 					type='text'
 					id='name'
 					onChange={() =>
@@ -48,7 +55,10 @@ const CreateCategory = () => {
 					placeholder='Category name'
 				/>
 			</div>
-			<Button variant="contained" color="secondary" onClick={handleSave}>Save</Button>
+			<Button variant='contained' color='secondary' onClick={handleSave}>
+				<SaveOutlinedIcon />
+				Save
+			</Button>
 		</>
 	);
 };

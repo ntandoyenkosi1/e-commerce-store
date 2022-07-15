@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
 	const [role, setRole] = useState([]);
@@ -57,13 +59,17 @@ const Orders = () => {
 							{item.product[0].name} |{" "}
 							{item.product[0].description} | R
 							{item.product[0].price}{" "}
-							<Link to={`/orders/${item._id}`}>View</Link>
+							<Link to={`/orders/${item._id}`}>
+								<VisibilityOutlinedIcon />
+								View
+							</Link>
 							{role.roles.includes("admin") && (
 								<Button
 									variant='contained'
 									color='secondary'
 									onClick={() => handleRemove(item._id)}
 								>
+									<DeleteOutlinedIcon />
 									Remove
 								</Button>
 							)}

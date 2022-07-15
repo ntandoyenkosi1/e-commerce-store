@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "@mui/material"
+import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import DeleteIcon from "@mui/icons-material/Delete";
 const DeleteCategory = () => {
-	const [name, setName] = useState("")
-	const { id } = useParams()
-	const navigate=useNavigate()
+	const [name, setName] = useState("");
+	const { id } = useParams();
+	const navigate = useNavigate();
 	useEffect(() => {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -21,13 +24,13 @@ const DeleteCategory = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					setName(result.data.name)
+					setName(result.data.name);
 				} else {
 					alert("An error occurred");
 				}
 			})
 			.catch((error) => console.log("error", error));
-	}, [])
+	}, []);
 	function handleDelete() {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -43,7 +46,9 @@ const DeleteCategory = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					navigate("/category",{state:{message:"Category deleted successfully"}})
+					navigate("/category", {
+						state: { message: "Category deleted successfully" },
+					});
 				} else {
 					alert("An error occurred");
 				}
@@ -52,13 +57,17 @@ const DeleteCategory = () => {
 	}
 	return (
 		<>
+			<div className="logo">
+				<DeleteIcon color="secondary" fontSize="large" />
+				</div>
 			<h1>Delete Category</h1>
 			<div>
 				<h6>
 					The category with the following information below will be
 					deleted
 				</h6>
-				<TextField variant="standard"
+				<TextField
+					variant='standard'
 					type='text'
 					id='name'
 					disabled
@@ -69,9 +78,19 @@ const DeleteCategory = () => {
 					placeholder='Category name'
 				/>
 			</div>
-			<Button variant="contained" color="secondary" onClick={handleDelete}>Confirm Deletion</Button>
-			<Button variant="contained" color="danger">Cancel</Button>
+			<Button
+				variant='contained'
+				color='secondary'
+				onClick={handleDelete}
+			>
+				<SaveOutlinedIcon />
+				Confirm Deletion
+			</Button>
+			<Button variant='contained' color='danger'>
+				<CancelOutlinedIcon />
+				Cancel
+			</Button>
 		</>
 	);
 };
-export default DeleteCategory
+export default DeleteCategory;

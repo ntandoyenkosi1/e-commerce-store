@@ -36,7 +36,17 @@ div{
 }
 h1{
   font-family: 'Oswald', sans-serif;
+  margin-top: 0px;
+  margin-bottom: 16px;
 }
 h4{
   text-decoration: underline;
+}
+.logo{
+  margin-top:10px;
+}
+.input-text{
+  max-width:35%;
+  margin-left:auto;
+  margin-right:auto;
 }

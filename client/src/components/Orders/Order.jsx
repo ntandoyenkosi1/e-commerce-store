@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import WysiwygIcon from '@mui/icons-material/Wysiwyg';
 const Order = () => {
 	const [order, setOrder] = useState([]);
 	const { id } = useParams();
@@ -27,6 +28,9 @@ const Order = () => {
 		<>
 			{order.product && (
 				<div>
+					<div className="logo">
+						<WysiwygIcon color="secondary" fontSize="large" />
+						</div>
 					<h1>Order</h1>
 					<h4><b>Your order details</b></h4>
 					<div><b>Name:</b> {order?.product[0]?.name}</div>

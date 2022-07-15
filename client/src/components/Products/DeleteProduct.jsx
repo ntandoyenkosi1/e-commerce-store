@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {Button, TextField} from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import DeleteIcon from '@mui/icons-material/Delete';
 const DeleteProduct = () => {
 	const [product, setProduct] = useState([]);
 	const { id } = useParams();
 	useEffect(() => {
 		var myHeaders = new Headers();
-		var token=localStorage.getItem("token")
+		var token = localStorage.getItem("token");
 		myHeaders.append("x-auth-token", token);
 		var requestOptions = {
 			method: "GET",
@@ -19,7 +22,7 @@ const DeleteProduct = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					setProduct(result.data)
+					setProduct(result.data);
 				}
 			})
 			.catch((error) => console.log("error", error));
@@ -27,7 +30,7 @@ const DeleteProduct = () => {
 	function handleDelete() {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
-		
+
 		myHeaders.append("x-auth-token", token);
 
 		var requestOptions = {
@@ -49,46 +52,55 @@ const DeleteProduct = () => {
 	return (
 		<>
 			<div>
+			<div className="logo">
+				<DeleteIcon color="secondary" fontSize="large" />
+				</div>
 				<h1>Delete Product</h1>
 			</div>
 			<div>The following product with these details will be deleted:</div>
-			<div>
-			<TextField variant="standard"
+			<div className='input-text'>
+				<TextField
+					variant='standard'
 					type='text'
 					id='name'
+					fullWidth
 					disabled
 					placeHolder='Product Name'
 					value={product.name}
 				/>
 			</div>
-			<div>
-			<TextField variant="standard"
+			<div className='input-text'>
+				<TextField
+					variant='standard'
 					type='text'
 					id='price'
+					fullWidth
 					value={product.price}
 					disabled
 					placeHolder='Price'
 				/>
 			</div>
-			<div>
-			<TextField variant="standard"
+			<div className='input-text'>
+				<TextField
+					variant='standard'
 					type='text'
 					id='description'
 					disabled
+					fullWidth
 					placeHolder='Description'
 					value={product.description}
 				/>
 			</div>
-			<div>
-			<TextField variant="standard"
+			<div className='input-text'>
+				<TextField
+					variant='standard'
 					disabled
 					type='text'
 					id='image'
+					fullWidth
 					placeHolder='Product Link'
 					value={product.image}
 				/>
-
-				
 			</div>
 			<img src={`${product.image}`} width='200' height='200' />
 			<div>
@@ -99,8 +111,23 @@ const DeleteProduct = () => {
 					<option>Category 3</option>
 				</select>
 			</div>
-			<Button variant="contained" color="secondary" onClick={handleDelete}>Confirm Delete</Button>
-			<Button variant="contained" color="secondary">Cancel</Button>
+			<Button
+				variant='contained'
+				title='Delete this product'
+				color='secondary'
+				onClick={handleDelete}
+			>
+				<SaveOutlinedIcon />
+				Confirm
+			</Button>
+			<Button
+				variant='contained'
+				title='Cancel deletion'
+				color='secondary'
+			>
+				<CancelOutlinedIcon />
+				Cancel
+			</Button>
 		</>
 	);
 };

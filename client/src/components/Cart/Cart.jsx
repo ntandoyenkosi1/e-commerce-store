@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import WysiwygIcon from "@mui/icons-material/Wysiwyg";
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 const Cart = () => {
   const [cart, setCart] = useState([]);
   useEffect(() => {
@@ -35,6 +38,9 @@ const Cart = () => {
   }
   return (
     <div>
+      <div className="logo" >
+				<WysiwygIcon color="secondary" fontSize="large"/>
+			</div>
       <h1>Cart</h1>
       {cart && cart.map((item, key) => {
         console.log(item)
@@ -44,7 +50,9 @@ const Cart = () => {
               {item.product[0] && (
               <>
                   {item.product[0].name} | {item.product[0].description} | R{item.product[0].price}{" "}
-                  <button onClick={()=>handleRemove(item._id)}>Remove</button>
+                  <button onClick={() => handleRemove(item._id)}>
+                    <DeleteOutlinedIcon />
+                    Remove</button>
                   </>
               )}
               
@@ -53,7 +61,9 @@ const Cart = () => {
         )
       }
       )}
-      <Link to={`/cart/checkout`}>Checkout</Link>
+      <Link to={`/cart/checkout`}>
+        <ShoppingCartCheckoutIcon/>
+        Checkout</Link>
     </div>
   )
 }

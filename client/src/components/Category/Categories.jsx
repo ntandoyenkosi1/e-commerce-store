@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 const Categories = () => {
 	const [categories, setCategories] = useState([]);
 	const [role, setRole] = useState([]);
@@ -50,15 +53,20 @@ const Categories = () => {
 					return (
 						<div key={key}>
 							<span>{category.name}</span>
-							<Link to={`/category/${category._id}`}>View</Link>
+							<Link to={`/category/${category._id}`}>
+								<VisibilityOutlinedIcon />
+								View
+							</Link>
 							{role.roles.includes("admin") && (
 								<>
 									<Link to={`/category/edit/${category._id}`}>
+										<EditOutlinedIcon />
 										Edit
 									</Link>
 									<Link
 										to={`/category/delete/${category._id}`}
 									>
+										<DeleteOutlinedIcon />
 										Delete
 									</Link>
 								</>

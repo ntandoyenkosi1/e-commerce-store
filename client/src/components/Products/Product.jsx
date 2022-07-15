@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
+import WysiwygIcon from '@mui/icons-material/Wysiwyg';
 const Product = () => {
 	const [product, setProduct] = useState([]);
 	const [role, setRole] = useState([]);
@@ -54,24 +59,33 @@ const Product = () => {
 	}
 	return (
 		<>
+			<div className="logo" >
+				<WysiwygIcon color="secondary" fontSize="large"/>
+			</div>
 			<h1>Product</h1>
 			<div>{product.name}</div>
 			<img src={product.image} width='200' height='200' alt='' />
 			<div>{product.description}</div>
 			<div>R{product.price}</div>
-			<Link to={`/products/checkout/${product._id}`}>Buy</Link>{" "}
+			<Link to={`/products/checkout/${product._id}`}>
+				<FavoriteBorderTwoToneIcon />
+				Buy</Link>{" "}
 			<Button
 				variant='contained'
 				color='secondary'
 				onClick={() => handleAddToCart(product._id, product.price)}
 			>
+				<AddShoppingCartRoundedIcon />
 				Add to cart
 			</Button>
-
 			{role.roles && role.roles.includes("admin") && (
 				<>
-					<Link to={`/products/delete/${id}`}>Delete</Link>
-					<Link to={`/products/edit/${id}`}>Edit</Link>
+					<Link to={`/products/delete/${id}`}>
+						<DeleteOutlinedIcon />
+						Delete</Link>
+					<Link to={`/products/edit/${id}`}>
+						<EditOutlinedIcon />
+						Edit</Link>
 				</>
 			)}
 		</>
