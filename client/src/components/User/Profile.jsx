@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const Profile = () => {
-	const { id } = useParams();
 	const [user, setUser] = useState({});
 	useEffect(() => {
+		const id = JSON.parse(localStorage.getItem("data")).id;
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
 		myHeaders.append("x-auth-token", token);
@@ -17,20 +16,26 @@ const Profile = () => {
 
 		fetch(`http://localhost:3001/api/users/${id}`, requestOptions)
 			.then((response) => response.json())
-      .then((result) => {
-        console.log(result)
+			.then((result) => {
 				if (result.ok) {
 					setUser(result.data);
 				}
 			})
 			.catch((error) => console.log("error", error));
-	},[]);
+	}, []);
 	return (
 		<>
+			<div className="logo">
+				<AccountCircleIcon color="secondary" fontSize="large" />
+			</div>
 			<h1>Profile</h1>
-			<div>Name {user.name}</div>
-			<div>Email {user.email}</div>
-      <div>Role { user.roles[0]}</div>
+			{user.name && (
+				<>
+					<div><b>Name:</b> {user.name}</div>
+					<div><b>Email:</b> {user.email}</div>
+					{/* <div><b>Role:</b> {user.roles[0]}</div> */}
+				</>
+			)}
 		</>
 	);
 };

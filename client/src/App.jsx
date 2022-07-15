@@ -39,7 +39,7 @@ function App() {
         <Route path='/orders/:id' element={<Order />} />
         <Route path='/login' element={<Login />} />
         <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/profile/:id' element={<Profile />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/cart/checkout' element={<Checkout />} />
       </Routes>
