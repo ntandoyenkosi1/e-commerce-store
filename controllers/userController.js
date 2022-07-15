@@ -109,6 +109,7 @@ const updateUser = (req, res) => {
 			name: req.body.name,
 			email: req.body.email,
 			password: req.body.password,
+			roles:req.body.roles
 		},
 		{ new: true }
 	)
