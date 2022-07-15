@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Button } from "@mui/material";
 const Product = () => {
 	const [product, setProduct] = useState([]);
+	const [role, setRole] = useState([]);
 	const { id } = useParams();
 	useEffect(() => {
 		var requestOptions = {
@@ -18,6 +20,14 @@ const Product = () => {
 			})
 			.catch((error) => console.log("error", error));
 	}, []);
+	useEffect(() => {
+		var r = localStorage.getItem("data");
+		console.log(r);
+		if (r) {
+			setRole(JSON.parse(r));
+			console.log(JSON.parse(r).roles);
+		}
+	}, []);
 	function handleAddToCart(id, price) {
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
@@ -27,14 +37,12 @@ const Product = () => {
 			quantity: 1,
 			price: price,
 		});
-
 		var requestOptions = {
 			method: "POST",
 			headers: myHeaders,
 			body: raw,
 			redirect: "follow",
 		};
-
 		fetch("http://localhost:3001/api/carts", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
@@ -52,11 +60,20 @@ const Product = () => {
 			<div>{product.description}</div>
 			<div>R{product.price}</div>
 			<Link to={`/products/checkout/${product._id}`}>Buy</Link>{" "}
-			<button onClick={() => handleAddToCart(product._id, product.price)}>
+			<Button
+				variant='contained'
+				color='secondary'
+				onClick={() => handleAddToCart(product._id, product.price)}
+			>
 				Add to cart
-			</button>
-			<Link to={`/products/delete/${id}`}>Delete</Link>
-			<Link to={`/products/edit/${id}`}>Edit</Link>
+			</Button>
+
+			{role.roles && role.roles.includes("admin") && (
+				<>
+					<Link to={`/products/delete/${id}`}>Delete</Link>
+					<Link to={`/products/edit/${id}`}>Edit</Link>
+				</>
+			)}
 		</>
 	);
 };

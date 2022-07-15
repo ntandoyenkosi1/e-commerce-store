@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 const CreateCategory = () => {
 	const [name, setName] = useState("");
 	function handleSave() {
@@ -36,7 +38,7 @@ const CreateCategory = () => {
 		<>
 			<h1>Add new category</h1>
 			<div>
-				<input
+			<TextField variant="standard" label="Category name"
 					type='text'
 					id='name'
 					onChange={() =>
@@ -46,7 +48,7 @@ const CreateCategory = () => {
 					placeholder='Category name'
 				/>
 			</div>
-			<button onClick={handleSave}>Save</button>
+			<Button variant="contained" color="secondary" onClick={handleSave}>Save</Button>
 		</>
 	);
 };

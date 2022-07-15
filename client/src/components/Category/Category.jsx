@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 const Category = (props) => {
 	const [category, setCategory] = useState([])
+	const [role, setRole] = useState([])
 	const { id } = useParams()
 	const navigate=useNavigate()
 	useEffect(() => {
@@ -24,7 +25,15 @@ const Category = (props) => {
 			}
 		 })
 		.catch(error => console.log('error', error));
-	},[])
+	}, [])
+	useEffect(() => {
+		var r = localStorage.getItem("data");
+		console.log(r);
+		if (r) {
+			setRole(JSON.parse(r));
+			console.log(JSON.parse(r).roles);
+		}
+	}, []);
 	return (
 		<>
 			<div>
@@ -32,8 +41,12 @@ const Category = (props) => {
 				<div>
 					{category.name}
 				</div>
+				{role.roles && role.roles.includes("admin") && (
+					<>
 				<button onClick={() => navigate(`/category/edit/${id}`)}>Edit</button>
-				<Link to={`/category/delete/${id}`}>Delete</Link>
+						<Link to={`/category/delete/${id}`}>Delete</Link>
+						</>
+				)}
 			</div>
 		</>
 	);

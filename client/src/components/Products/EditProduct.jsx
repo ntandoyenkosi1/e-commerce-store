@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import {Button, TextField, Input} from "@mui/material";
 const EditProduct = () => {
 	const [product, setProduct] = useState([]);
 	const [name, setName] = useState("");
@@ -70,7 +71,7 @@ const EditProduct = () => {
 			<div>
 				<h1>Edit Product</h1>
 				<div>
-					<input
+				<Input variant="standard"
 						type='text'
 						id='name'
 						value={name}
@@ -79,7 +80,7 @@ const EditProduct = () => {
 					/>
 				</div>
 				<div>
-					<input
+				<Input variant="standard"
 						type='text'
 						id='price'
 						value={price}
@@ -88,7 +89,7 @@ const EditProduct = () => {
 					/>
 				</div>
 				<div>
-					<input
+				<Input variant="standard"
 						type='text'
 						id='description'
 						placeHolder='Description'
@@ -101,7 +102,7 @@ const EditProduct = () => {
 				</div>
 				<input type='file' onChange={(e)=>handleFileUpload(e)} />
 				<div>
-					<input
+				<Input variant="standard"
 						type='text'
 						value={product.image}
 						id='image'
@@ -116,8 +117,8 @@ const EditProduct = () => {
 					<option value='Category 3'>Category 3</option>
 				</select>
 				<div>
-					<button onClick={handleEdit}>Save Changes</button>
-					<button>Cancel</button>
+				<Button variant="contained" color="secondary" onClick={handleEdit}>Save Changes</Button>
+				<Button variant="contained" color="secondary">Cancel</Button>
 				</div>
 			</div>
 		</>

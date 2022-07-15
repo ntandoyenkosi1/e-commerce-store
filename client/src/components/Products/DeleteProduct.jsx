@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import {Button, TextField} from "@mui/material";
 const DeleteProduct = () => {
 	const [product, setProduct] = useState([]);
 	const { id } = useParams();
@@ -52,7 +53,7 @@ const DeleteProduct = () => {
 			</div>
 			<div>The following product with these details will be deleted:</div>
 			<div>
-				<input
+			<TextField variant="standard"
 					type='text'
 					id='name'
 					disabled
@@ -61,7 +62,7 @@ const DeleteProduct = () => {
 				/>
 			</div>
 			<div>
-				<input
+			<TextField variant="standard"
 					type='text'
 					id='price'
 					value={product.price}
@@ -70,7 +71,7 @@ const DeleteProduct = () => {
 				/>
 			</div>
 			<div>
-				<input
+			<TextField variant="standard"
 					type='text'
 					id='description'
 					disabled
@@ -79,15 +80,17 @@ const DeleteProduct = () => {
 				/>
 			</div>
 			<div>
-				<input
+			<TextField variant="standard"
 					disabled
 					type='text'
 					id='image'
 					placeHolder='Product Link'
 					value={product.image}
 				/>
-				<img src={`${product.image}`} width='200' height='200' />
+
+				
 			</div>
+			<img src={`${product.image}`} width='200' height='200' />
 			<div>
 				<select disabled value={product.category}>
 					<option></option>
@@ -96,8 +99,8 @@ const DeleteProduct = () => {
 					<option>Category 3</option>
 				</select>
 			</div>
-			<button onClick={handleDelete}>Confirm Delete</button>
-			<button>Cancel</button>
+			<Button variant="contained" color="secondary" onClick={handleDelete}>Confirm Delete</Button>
+			<Button variant="contained" color="secondary">Cancel</Button>
 		</>
 	);
 };

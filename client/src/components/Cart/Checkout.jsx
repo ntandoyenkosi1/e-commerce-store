@@ -1,44 +1,47 @@
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 const Checkout = () => {
 	return (
 		<div>
 			<h1>Checkout</h1>
 			<div>
-				<input type='text' placeholder='Enter your name' />
+			<TextField variant="standard" label="Name" placeholder='Enter your name'/>
+				{/* <TextField variant="standard" placeholder='Enter your name' /> */}
 			</div>
 			<div>
-				<input type='text' placeholder='Address Line 1' />
+				<TextField variant="standard" label="Address Line 1" placeholder='Address Line 1' />
 			</div>
 			<div>
-				<input type='text' placeholder='Address Line 2' />
+				<TextField variant="standard" label="Address Line 2" placeholder='Address Line 2' />
 			</div>
 			<div>
-				<input type='text' placeholder='City' />
+				<TextField variant="standard" label="City" placeholder='City' />
 			</div>
 			<div>
-				<input type='text' placeholder='Province' />
+				<TextField variant="standard" label="Province/Region" placeholder='Province' />
 			</div>
 			<div>
-				<input type='text' placeholder='Postal code' />
+				<TextField variant="standard" label="Postal Code" placeholder='Postal code' />
 			</div>
 			<div>
-				<input type='text' placeholder='Country' />
+				<TextField variant="standard" label="Country" placeholder='Country' />
 			</div>
-      <button>Proceed to Payment</button>
+      <Button variant="contained" color="secondary">Proceed to Payment</Button>
 			<h1>Payment</h1>
 			<div>
-				<input type='text' placeholder='Card Holder Name' />
+				<TextField variant="standard" label="Full name" placeholder='Card Holder Name' />
 			</div>
 			<div>
-				<input type='text' placeholder='Card Number' />
+				<TextField variant="standard" label="Card Number" placeholder='Card Number' />
 			</div>
 			<div>
-				<input type='text' placeholder='Expiry Date' />
+				<TextField variant="standard" label="Card expiry date" placeholder='Expiry Date' />
 			</div>
 			<div>
-				<input type='text' placeholder='CVV' />
+				<TextField variant="standard" label="CVV" placeholder='CVV' />
 			</div>
 			<div>
-				<button>Pay</button>
+			<Button variant="contained" color="secondary">Pay</Button>
 			</div>
 			<h1>Summary</h1>
 			<h3>Product details</h3>
@@ -53,7 +56,7 @@ const Checkout = () => {
 			<h3>Payment details</h3>
 			<div>Paid</div>
       <div>Total</div>
-      <button>Complete Sale</button>
+      <Button variant="contained" color="secondary">Complete Sale</Button>
 		</div>
 	);
 };

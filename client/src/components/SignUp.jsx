@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Button, Input } from "@mui/material";
 const SignUp = () => {
 	const [name, setName] = useState("")
 	const [email, setEmail] = useState("")
@@ -50,15 +50,15 @@ const SignUp = () => {
 		<>
 			<h1>Sign Up</h1>
 			<div>
-				<input type='text' id='name' placeholder='Name' onChange={()=>setName(document.getElementById("name").value)} value={name} />
+				<Input color="secondary"  type='text' id='name' placeholder='Name' onChange={()=>setName(document.getElementById("name").value)} value={name} />
 			</div>
 			<div>
-				<input type='text' id='email' placeholder='Email' />
+				<Input color="secondary"  type='text' id='email' placeholder='Email' />
 			</div>
 			<div>
-				<input type='password' id='password' placeholder='Password' />
+				<Input color="secondary"  type='password' id='password' placeholder='Password' />
 			</div>
-			<button onClick={handleSignUp}>Sign Up</button>
+			<Button variant="contained" color="secondary" onClick={handleSignUp}>Sign Up</Button>
 		</>
 	);
 };

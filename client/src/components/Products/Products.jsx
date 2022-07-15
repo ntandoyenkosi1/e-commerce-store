@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Stack } from "@mui/material";
+import { CardGroup, Card } from "react-bootstrap";
 const Products = () => {
 	const [products, setProducts] = useState([]);
+	const [role, setRole] = useState([]);
+	const navigate = useNavigate();
 	useEffect(() => {
 		var requestOptions = {
 			method: "GET",
@@ -16,6 +20,14 @@ const Products = () => {
 				}
 			})
 			.catch((error) => console.log("error", error));
+	}, []);
+	useEffect(() => {
+		var r = localStorage.getItem("data");
+		console.log(r);
+		if (r) {
+			setRole(JSON.parse(r));
+			console.log(JSON.parse(r).roles);
+		}
 	}, []);
 	function handleAddToCart(id, price) {
 		var myHeaders = new Headers();
@@ -46,33 +58,75 @@ const Products = () => {
 	return (
 		<>
 			<h1>Products</h1>
-			<Link to={`/products/create`}>Add a new product</Link>
-			{products.map((item, key) => {
-				return (
-					<div key={key}>
-						<span>
-							{item.name} | {item.description} | R{item.price}{" "}
-							<Link to={`/products/${item._id}`}>View</Link>{" "}
-							<Link to={`/products/edit/${item._id}`}>Edit</Link>{" "}
-							<Link to={`/products/delete/${item._id}`}>
-								Delete
-							</Link>{" "}
-							<Link to={`/products/checkout/${item._id}`}>Buy</Link>{" "}
-							<button
-								onClick={() =>
-									handleAddToCart(
-										item._id,
-										item.price
-									)
-								}
+			{role.roles && role.roles.includes("admin") && (
+				<div>
+					<Link to={`/products/create`}>Add a new product</Link>
+				</div>
+			)}
+			<div className='container'>
+				{products.map((item, key) => {
+					return (
+						<div
+							className='card'
+							key={key}
+							style={{ backgroundColor: "white" }}
+						>
+							<img
+								src={item.image}
+								width='200'
+								height='200'
+								alt=''
+							/>
+							<div
+								className='card-item'
+								style={{
+									backgroundColor: "white",
+									position: "relative",
+								}}
 							>
-								Add To Cart
-							</button>
-						</span>
-					</div>
-				);
-			})}
+								{item.name}
+							</div>
+							<div className='card-item'>R {item.price} </div>
+							{/* <Link to={`/products/checkout/${item._id}`}>Buy</Link>{" "} */}
+							<div className='card-item'>
+								<Button
+									variant='contained'
+									color='secondary'
+									onClick={() =>
+										navigate(
+											`/products/checkout/${item._id}`
+										)
+									}
+								>
+									Buy
+								</Button>
+								<Button
+									variant='contained'
+									color='secondary'
+									onClick={() =>
+										handleAddToCart(item._id, item.price)
+									}
+								>
+									Add To Cart
+								</Button>
+							</div>
+							<Link to={`/products/${item._id}`}>View</Link>{" "}
+							{role.roles.includes("admin") && (
+								<>
+									<Link to={`/products/edit/${item._id}`}>
+										Edit
+									</Link>
+									<Link to={`/products/delete/${item._id}`}>
+										Delete
+									</Link>
+								</>
+							)}
+						</div>
+					);
+				})}
+			</div>
 		</>
 	);
 };
+
 export default Products;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Input } from "@mui/material";
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("password");
@@ -23,13 +24,13 @@ const Login = () => {
 			body: raw,
 			redirect: "follow",
 		};
-		console.log(requestOptions.body);
 		fetch("http://localhost:3001/api/login", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
 					alert("You have successfully logged in");
 					localStorage.setItem("token", result.token);
+					localStorage.setItem("data",JSON.stringify(result.data));
 					return;
 				} else {
 				}
@@ -41,7 +42,7 @@ const Login = () => {
 		<>
 			<h1>Login</h1>
 			<div>
-				<input
+				<Input color="secondary" 
 					type='text'
 					id='email'
 					onChange={() =>
@@ -52,7 +53,7 @@ const Login = () => {
 				/>
 			</div>
 			<div>
-				<input
+				<Input color="secondary" 
 					type='password'
 					id='password'
 					onChange={() =>
@@ -62,7 +63,7 @@ const Login = () => {
 					placeholder='Password'
 				/>
 			</div>
-			<button onClick={handleLogin}>Login</button>
+			<Button variant="contained" color="secondary" onClick={handleLogin}>Login</Button>
 		</>
 	);
 };

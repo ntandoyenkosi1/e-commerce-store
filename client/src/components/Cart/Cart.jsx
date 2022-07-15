@@ -13,6 +13,7 @@ const Cart = () => {
       .then(result => {
         if (result.ok) {
           setCart(result.data);
+          console.log(result.data)
         }
       })
       .catch(error => console.log('error', error));
@@ -35,13 +36,18 @@ const Cart = () => {
   return (
     <div>
       <h1>Cart</h1>
-      {cart.map((item, key) => {
+      {cart && cart.map((item, key) => {
+        console.log(item)
         return (
           <div key={key}>
             <span>
-
-              {item.product[0].name} | {item.product[0].description} | R{item.product[0].price}{" "}
-              <button onClick={()=>handleRemove(item._id)}>Remove</button>
+              {item.product[0] && (
+              <>
+                  {item.product[0].name} | {item.product[0].description} | R{item.product[0].price}{" "}
+                  <button onClick={()=>handleRemove(item._id)}>Remove</button>
+                  </>
+              )}
+              
             </span>
           </div>
         )

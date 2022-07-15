@@ -5,10 +5,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative !important;
   text-align: center;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Style anchor as button */
+a, button {
+  text-decoration: none !important;
+  color: #fff !important;
+  background-color: rgb(93, 26, 26) !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  z-index: 21 !important;
+}
+
+/* span, div{
+  white-space: nowrap;
+  text-align: center;
+} */
+div{
+  font-family: 'Roboto Mono', monospace;
+  font-size: 23px;
+  /* position: relative !important; */
+}
+h1{
+  font-family: 'Oswald', sans-serif;
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "@mui/material"
+import TextField from "@mui/material/TextField";
 const DeleteCategory = () => {
 	const [name, setName] = useState("")
 	const { id } = useParams()
@@ -56,7 +58,7 @@ const DeleteCategory = () => {
 					The category with the following information below will be
 					deleted
 				</h6>
-				<input
+				<TextField variant="standard"
 					type='text'
 					id='name'
 					disabled
@@ -67,8 +69,8 @@ const DeleteCategory = () => {
 					placeholder='Category name'
 				/>
 			</div>
-			<button onClick={handleDelete}>Confirm Deletion</button>
-			<button>Cancel</button>
+			<Button variant="contained" color="secondary" onClick={handleDelete}>Confirm Deletion</Button>
+			<Button variant="contained" color="danger">Cancel</Button>
 		</>
 	);
 };

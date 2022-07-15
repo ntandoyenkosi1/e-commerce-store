@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 const Categories = () => {
 	const [categories, setCategories] = useState([]);
+	const [role, setRole] = useState([]);
 	// read data from state object
 	const { id } = useParams();
 	const navigate = useNavigate();
@@ -30,23 +31,38 @@ const Categories = () => {
 			})
 			.catch((error) => console.log("error", error));
 	}, []);
-
+	useEffect(() => {
+		var r = localStorage.getItem("data");
+		console.log(r);
+		if (r) {
+			setRole(JSON.parse(r));
+			console.log(JSON.parse(r).roles);
+		}
+	}, []);
 	return (
 		<>
 			<div>
 				<h1>Categories</h1>
-				<Link to={`/category/create`}>Create a new category</Link>
+				{role.roles && role.roles.includes("admin") && (
+					<Link to={`/category/create`}>Create a new category</Link>
+				)}
 				{categories.map((category, key) => {
 					return (
 						<div key={key}>
 							<span>{category.name}</span>
 							<Link to={`/category/${category._id}`}>View</Link>
-							<Link to={`/category/edit/${category._id}`}>
-								Edit
-							</Link>
-							<Link to={`/category/delete/${category._id}`}>
-								Delete
-							</Link>
+							{role.roles.includes("admin") && (
+								<>
+									<Link to={`/category/edit/${category._id}`}>
+										Edit
+									</Link>
+									<Link
+										to={`/category/delete/${category._id}`}
+									>
+										Delete
+									</Link>
+								</>
+							)}
 						</div>
 					);
 				})}

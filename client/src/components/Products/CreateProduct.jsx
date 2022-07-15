@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button, Input } from "@mui/material"
+import TextField from "@mui/material/TextField";
 const CreateProduct = () => {
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState("");
@@ -40,32 +42,32 @@ const CreateProduct = () => {
 			<div>
 				<h1>Add a new Product</h1>
 				<div>
-					<input
+				<Input variant="standard"
 						onChange={() =>
 							setName(document.getElementById("name").value)
 						}
 						value={name}
 						type='text'
 						id='name'
-						placeHolder='Product Name'
+						placeholder='Product Name'
 					/>
 				</div>
 				<div>
-					<input
+				<Input color="secondary"  variant="standard"
 						onChange={() =>
 							setPrice(document.getElementById("price").value)
 						}
 						value={price}
 						type='text'
 						id='price'
-						placeHolder='Price'
+						placeholder='Price'
 					/>
 				</div>
 				<div>
-					<input
+				<Input color="secondary"  variant="standard"
 						type='text'
 						id='description'
-						placeHolder='Description'
+						placeholder='Description'
 						onChange={() =>
 							setDescription(
 								document.getElementById("description").value
@@ -74,15 +76,16 @@ const CreateProduct = () => {
 						value={description}
 					/>
 				</div>
+				<span>Upload product image</span>
 				<div>
-					<span>Upload product image</span>
+					
 					<input type='file' onChange={(e) => handleFileUpload(e)} />
 				</div>
 				<div>
-					<input
+				<Input color="secondary"  variant="standard"
 						type='text'
 						id='image'
-						placeHolder='Product Link'
+						placeholder='Product Link'
 						onChange={() =>
 							setImage(document.getElementById("image").value)
 						}
@@ -101,7 +104,7 @@ const CreateProduct = () => {
 					<option value='Category 2'>Category 2</option>
 					<option value='Category 3'>Category 3</option>
 				</select>
-				<button onClick={handleCreate}>Create Product</button>
+				<Button variant="contained" color="secondary" onClick={handleCreate}>Create Product</Button>
 			</div>
 		</>
 	);

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
 const EditCategory = (props) => {
 	const [name, setName] = useState("");
 	const { id } = useParams()
@@ -61,7 +63,7 @@ const EditCategory = (props) => {
 		<>
 			<h1>Edit Category</h1>
 			<div>
-				<input
+			<TextField variant="standard"
 					type='text'
 					id='name'
 					onChange={() =>
@@ -71,7 +73,7 @@ const EditCategory = (props) => {
 					placeholder='Category name'
 				/>
 			</div>
-			<button onClick={handleEdit}>Save Changes</button>
+			<Button variant="contained" color="secondary" onClick={handleEdit}>Save Changes</Button>
 		</>
 	);
 };

@@ -25,12 +25,16 @@ const Order = () => {
 	}, []);
 	return (
 		<>
-			<h1>Order</h1>
-			<div>Name {order?.product[0]?.name}</div>
-			<div>Price {order.product[0]?.price}</div>
-			<div>Description {order.product[0]?.description}</div>
-			<div>Quantity {order.quantity}</div>
-			<div>Date {order.date}</div>
+			{order.product && (
+				<div>
+					<h1>Order</h1>
+					<div>Name {order?.product[0]?.name}</div>
+					<div>Price {order?.product[0]?.price}</div>
+					<div>Description {order?.product[0]?.description}</div>
+					<div>Quantity {order?.quantity}</div>
+					<div>Date {order?.date}</div>
+				</div>
+			)}
 		</>
 	);
 };
