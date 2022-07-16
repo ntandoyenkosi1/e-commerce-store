@@ -5,6 +5,7 @@ import { Button, TextField } from "@mui/material";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import DeleteIcon from '@mui/icons-material/Delete';
+import Loading from "../Loading";
 const DeleteProduct = () => {
 	const [product, setProduct] = useState([]);
 	const navigate=useNavigate()
@@ -67,6 +68,9 @@ const DeleteProduct = () => {
 				<h1>Delete Product</h1>
 			</div>
 			<div>The following product with these details will be deleted:</div>
+			{product.length == 0 && (
+					<Loading/>
+				)}
 			<div className='input-text'>
 				<TextField
 					variant='standard'

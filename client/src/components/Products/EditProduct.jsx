@@ -4,6 +4,7 @@ import { Button, TextField, Input } from "@mui/material";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import EditIcon from "@mui/icons-material/Edit";
+import Loading from "../Loading";
 const EditProduct = () => {
 	const [product, setProduct] = useState([]);
 	const [name, setName] = useState("");
@@ -84,6 +85,9 @@ const EditProduct = () => {
 					<EditIcon color='secondary' fontSize='large' />
 				</div>
 				<h1>Edit Product</h1>
+				{product.length == 0 && (
+					<Loading/>
+				)}
 				<div className='input-text'>
 					<Input
 						variant='standard'

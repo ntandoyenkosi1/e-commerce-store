@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Loading";
 const Profile = () => {
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState([]);
 	const navigate=useNavigate()
 	useEffect(() => {
 		const id = JSON.parse(localStorage.getItem("data")).id;
@@ -33,6 +34,11 @@ const Profile = () => {
 				<AccountCircleIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>Profile</h1>
+			<div>
+			{user.length == 0 && (
+				<Loading/>
+				)}
+				</div>
 			{user.name && (
 				<>
 					<div>

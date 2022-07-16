@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import Loading from "../Loading";
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
 	const [role, setRole] = useState([]);
@@ -64,6 +65,9 @@ const Orders = () => {
 		<>
 			<h1>Orders</h1>
 			<h4>View Orders</h4>
+			{orders.length == 0 && (
+				<Loading/>
+			)}
 			{orders.map((item, key) => {
 				return (
 					<div key={key}>

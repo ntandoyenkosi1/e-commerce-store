@@ -21,6 +21,7 @@ import Header from "./components/Header";
 import Checkout from "./components/Cart/Checkout";
 import NotFound from "./components/Error/NotFound";
 import ErrorOccured from "./components/Error/ErrorOccured";
+import Loading from "./components/Loading";
 function App() {
 	return (
 		<BrowserRouter>
@@ -50,6 +51,7 @@ function App() {
 				<Route path='/profile' element={<Profile />} />
 				<Route path='/cart' element={<Cart />} />
 				<Route path='/cart/checkout' element={<Checkout />} />
+				<Route path="/test" element={<Loading/>}/>
 				<Route path='/internal-error' element={<ErrorOccured />} />
 				<Route path='/error' element={<NotFound />} />
 				<Route path='/*' element={<NotFound />} />

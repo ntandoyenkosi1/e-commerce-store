@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Loading from "../Loading";
 const DeleteCategory = () => {
 	const [name, setName] = useState("");
 	const { id } = useParams();
@@ -26,12 +27,12 @@ const DeleteCategory = () => {
 				if (result.ok) {
 					setName(result.data.name);
 				} else {
-					navigate("/internal-error")
+					navigate("/internal-error");
 				}
 			})
 			.catch((error) => {
 				//console.log("error", error)
-				navigate("/internal-error")
+				navigate("/internal-error");
 			});
 	}, []);
 	function handleDelete() {
@@ -53,33 +54,31 @@ const DeleteCategory = () => {
 						state: { message: "Category deleted successfully" },
 					});
 				} else {
-					navigate("/internal-error")
+					navigate("/internal-error");
 				}
 			})
 			.catch((error) => {
 				//console.log("error", error)
-				navigate("/internal-error")
+				navigate("/internal-error");
 			});
 	}
 	return (
 		<>
-			<div className="logo">
-				<DeleteIcon color="secondary" fontSize="large" />
-				</div>
+			<div className='logo'>
+				<DeleteIcon color='secondary' fontSize='large' />
+			</div>
 			<h1>Delete Category</h1>
 			<div>
 				<h6>
 					The category with the following information below will be
 					deleted
 				</h6>
+				{name == "" && <Loading />}
 				<TextField
 					variant='standard'
 					type='text'
 					id='name'
 					disabled
-					onChange={() =>
-						setName(document.getElementById("name").value)
-					}
 					value={name}
 					placeholder='Category name'
 				/>

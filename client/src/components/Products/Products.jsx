@@ -6,6 +6,7 @@ import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import Loading from "../Loading";
 const Products = () => {
 	const [products, setProducts] = useState([]);
 	const [role, setRole] = useState([]);
@@ -75,6 +76,9 @@ const Products = () => {
 					<Link to={`/products/create`}>Add a new product</Link>
 				</div>
 			)}
+			{products.length==0 && (
+				<Loading/>
+			) }
 			<div className='container'>
 				{products.map((item, key) => {
 					return (

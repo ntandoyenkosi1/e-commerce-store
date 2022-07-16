@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import EditIcon from "@mui/icons-material/Edit";
+import Loading from "../Loading";
 const EditCategory = (props) => {
 	const [name, setName] = useState("");
 	const { id } = useParams();
@@ -74,6 +75,9 @@ const EditCategory = (props) => {
 				<EditIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>Edit Category</h1>
+			{name == "" && (
+				<Loading/>
+			)}
 			<div>
 				<TextField
 					variant='standard'

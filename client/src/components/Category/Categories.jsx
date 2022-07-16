@@ -3,6 +3,7 @@ import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import Loading from "../Loading";
 const Categories = () => {
 	const [categories, setCategories] = useState([]);
 	const [role, setRole] = useState([]);
@@ -51,6 +52,11 @@ const Categories = () => {
 				{role.roles && role.roles.includes("admin") && (
 					<Link to={`/category/create`}>Create a new category</Link>
 				)}
+				<div>
+					{categories.length == 0 && (
+						<Loading/>
+					)}
+				</div>
 				{categories.map((category, key) => {
 					return (
 						<div key={key}>

@@ -6,6 +6,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
 import WysiwygIcon from '@mui/icons-material/Wysiwyg';
+import Loading from "../Loading";
 const Product = () => {
 	const [product, setProduct] = useState([]);
 	const [role, setRole] = useState([]);
@@ -71,6 +72,9 @@ const Product = () => {
 				<WysiwygIcon color="secondary" fontSize="large"/>
 			</div>
 			<h1>Product</h1>
+			{product.length == 0 && (
+				<Loading/>
+			)}
 			<div>{product.name}</div>
 			<img src={product.image} width='200' height='200' alt='' />
 			<div>{product.description}</div>

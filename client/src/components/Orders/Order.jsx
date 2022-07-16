@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import WysiwygIcon from '@mui/icons-material/Wysiwyg';
+import Loading from "../Loading";
 const Order = () => {
 	const [order, setOrder] = useState([]);
 	const { id } = useParams();
@@ -38,6 +39,11 @@ const Order = () => {
 						</div>
 					<h1>Order</h1>
 					<h4><b>Your order details</b></h4>
+					<div>
+						{order.length == 0 && (
+							<Loading/>
+						)}
+					</div>
 					<div><b>Name:</b> {order?.product[0]?.name}</div>
 					<div><b>Price:</b> {order?.product[0]?.price}</div>
 					<div><b>Description:</b> {order?.product[0]?.description}</div>

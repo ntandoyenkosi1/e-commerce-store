@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import Loading from "../Loading";
 const Cart = () => {
 	const [cart, setCart] = useState([]);
 	const navigate = useNavigate();
@@ -48,7 +49,10 @@ const Cart = () => {
 			<div className='logo'>
 				<WysiwygIcon color='secondary' fontSize='large' />
 			</div>
-			<h1>Cart</h1>
+      <h1>Cart</h1>
+      {cart.length == 0 && (
+        <Loading/>
+      )}
 			{cart &&
 				cart.map((item, key) => {
 					//console.log(item);
