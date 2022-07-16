@@ -3,8 +3,10 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { useNavigate } from "react-router-dom";
 const CreateCategory = () => {
 	const [name, setName] = useState("");
+	const navigate=useNavigate()
 	function handleSave() {
 		if (name == "") {
 			return alert("Enter name");
@@ -31,10 +33,13 @@ const CreateCategory = () => {
 				if (result.ok) {
 					return alert("Category created successfully");
 				} else {
-					alert("An error occurred");
+					navigate("/internal-error")
 				}
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	return (
 		<>

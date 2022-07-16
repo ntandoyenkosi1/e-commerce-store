@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -10,6 +10,7 @@ const Product = () => {
 	const [product, setProduct] = useState([]);
 	const [role, setRole] = useState([]);
 	const { id } = useParams();
+	const navigate=useNavigate()
 	useEffect(() => {
 		var requestOptions = {
 			method: "GET",
@@ -20,17 +21,21 @@ const Product = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					setProduct(result.data);
+					return setProduct(result.data);
 				}
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}, []);
 	useEffect(() => {
 		var r = localStorage.getItem("data");
-		console.log(r);
+		//console.log(r);
 		if (r) {
 			setRole(JSON.parse(r));
-			console.log(JSON.parse(r).roles);
+			//console.log(JSON.parse(r).roles);
 		}
 	}, []);
 	function handleAddToCart(id, price) {
@@ -52,10 +57,13 @@ const Product = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					console.log(result.data);
+					return //console.log(result.data);
 				}
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	return (
 		<>

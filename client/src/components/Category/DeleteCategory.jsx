@@ -26,10 +26,13 @@ const DeleteCategory = () => {
 				if (result.ok) {
 					setName(result.data.name);
 				} else {
-					alert("An error occurred");
+					navigate("/internal-error")
 				}
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}, []);
 	function handleDelete() {
 		var myHeaders = new Headers();
@@ -50,10 +53,13 @@ const DeleteCategory = () => {
 						state: { message: "Category deleted successfully" },
 					});
 				} else {
-					alert("An error occurred");
+					navigate("/internal-error")
 				}
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	return (
 		<>

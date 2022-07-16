@@ -4,13 +4,14 @@ import TextField from "@mui/material/TextField";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useNavigate } from "react-router-dom";
 const CreateProduct = () => {
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState("");
 	const [description, setDescription] = useState("");
 	const [category, setCategory] = useState("");
 	const [image, setImage] = useState("");
-
+	const navigate=useNavigate()
 	function handleCreate() {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -34,11 +35,16 @@ const CreateProduct = () => {
 
 		fetch("http://localhost:3001/api/products", requestOptions)
 			.then((response) => response.text())
-			.then((result) => console.log(result))
-			.catch((error) => console.log("error", error));
+			.then((result) => {
+				return //console.log(result)
+			})
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	function handleFileUpload(e) {
-		console.log(e.target.files[0]);
+		//console.log(e.target.files[0]);
 	}
 	return (
 		<>
@@ -119,7 +125,7 @@ const CreateProduct = () => {
 							setCategory(
 								document.getElementById("category").value
 							);
-							console.log(category);
+							//console.log(category);
 						}}
 					>
 						<option value='0'></option>

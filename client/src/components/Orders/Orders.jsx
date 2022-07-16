@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
 	const [role, setRole] = useState([]);
+	const navigate=useNavigate()
 	useEffect(() => {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -18,19 +19,22 @@ const Orders = () => {
 		fetch("http://localhost:3001/api/sales", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log(result);
 				if (result.ok) {
-					setOrders(result.data);
+					return setOrders(result.data);
 				}
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}, []);
 	useEffect(() => {
 		var r = localStorage.getItem("data");
-		console.log(r);
+		//console.log(r);
 		if (r) {
 			setRole(JSON.parse(r));
-			console.log(JSON.parse(r).roles);
+			//console.log(JSON.parse(r).roles);
 		}
 	}, []);
 	function handleRemove(id) {
@@ -45,8 +49,16 @@ const Orders = () => {
 
 		fetch(`http://localhost:3001/api/sales/${id}`, requestOptions)
 			.then((response) => response.text())
-			.then((result) => console.log(result))
-			.catch((error) => console.log("error", error));
+			.then((result) => { 
+				if (result.ok) {
+					return;
+				}
+				navigate("/internal-error")
+			 })
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	return (
 		<>

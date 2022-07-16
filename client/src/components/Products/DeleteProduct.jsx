@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import DeleteIcon from '@mui/icons-material/Delete';
 const DeleteProduct = () => {
 	const [product, setProduct] = useState([]);
+	const navigate=useNavigate()
 	const { id } = useParams();
 	useEffect(() => {
 		var myHeaders = new Headers();
@@ -22,10 +23,14 @@ const DeleteProduct = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					setProduct(result.data);
+					return setProduct(result.data);
 				}
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}, []);
 	function handleDelete() {
 		var myHeaders = new Headers();
@@ -45,9 +50,13 @@ const DeleteProduct = () => {
 				if (result.ok) {
 					return alert("Product deleted successfully");
 				}
-				console.log(result);
+				//console.log(result);
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	return (
 		<>

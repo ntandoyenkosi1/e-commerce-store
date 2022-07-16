@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import WysiwygIcon from '@mui/icons-material/Wysiwyg';
 const Order = () => {
 	const [order, setOrder] = useState([]);
 	const { id } = useParams();
+	const navigate=useNavigate()
 	useEffect(() => {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -17,12 +18,16 @@ const Order = () => {
 		fetch(`http://localhost:3001/api/sales/${id}`, requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log(result);
+				//console.log(result);
 				if (result.ok) {
-					setOrder(result.data[0]);
+					return setOrder(result.data[0]);
 				}
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}, []);
 	return (
 		<>

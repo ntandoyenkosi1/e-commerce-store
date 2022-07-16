@@ -1,38 +1,46 @@
 import { useState, useEffect } from "react";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
 	const [user, setUser] = useState({});
+	const navigate=useNavigate()
 	useEffect(() => {
 		const id = JSON.parse(localStorage.getItem("data")).id;
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
 		myHeaders.append("x-auth-token", token);
-
 		var requestOptions = {
 			method: "GET",
 			headers: myHeaders,
 			redirect: "follow",
 		};
-
 		fetch(`http://localhost:3001/api/users/${id}`, requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					setUser(result.data);
+					return setUser(result.data);
 				}
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}, []);
 	return (
 		<>
-			<div className="logo">
-				<AccountCircleIcon color="secondary" fontSize="large" />
+			<div className='logo'>
+				<AccountCircleIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>Profile</h1>
 			{user.name && (
 				<>
-					<div><b>Name:</b> {user.name}</div>
-					<div><b>Email:</b> {user.email}</div>
+					<div>
+						<b>Name:</b> {user.name}
+					</div>
+					<div>
+						<b>Email:</b> {user.email}
+					</div>
 					{/* <div><b>Role:</b> {user.roles[0]}</div> */}
 				</>
 			)}

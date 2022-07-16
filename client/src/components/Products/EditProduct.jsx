@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button, TextField, Input } from "@mui/material";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
@@ -12,6 +12,7 @@ const EditProduct = () => {
 	const [category, setCategory] = useState("");
 	const [image, setImage] = useState("");
 	const { id } = useParams();
+	const navigate = useNavigate();
 	useEffect(() => {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -32,9 +33,14 @@ const EditProduct = () => {
 					setImage(result.data.image);
 					setPrice(result.data.price);
 					setDescription(result.data.description);
+					return;
 				}
+				navigate("/internal-error");
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error);
+				navigate("/internal-error");
+			});
 	}, []);
 	function handleEdit() {
 		var myHeaders = new Headers();
@@ -58,16 +64,18 @@ const EditProduct = () => {
 		fetch(`http://localhost:3001/api/products/${id}`, requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log(result);
 				if (result.ok) {
 					return alert("Product updated successfully");
 				}
-				console.log(result);
+				navigate("/internal-error");
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error);
+				navigate("/internal-error");
+			});
 	}
 	function handleFileUpload(e) {
-		console.log(e.target.files[0]);
+		//console.log(e.target.files[0]);
 	}
 	return (
 		<>

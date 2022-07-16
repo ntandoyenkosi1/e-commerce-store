@@ -20,17 +20,21 @@ const Products = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					setProducts(result.data);
+					return setProducts(result.data);
 				}
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}, []);
 	useEffect(() => {
 		var r = localStorage.getItem("data");
-		console.log(r);
+		//console.log(r);
 		if (r) {
 			setRole(JSON.parse(r));
-			console.log(JSON.parse(r).roles);
+			//console.log(JSON.parse(r).roles);
 		}
 	}, []);
 	function handleAddToCart(id, price) {
@@ -54,10 +58,14 @@ const Products = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					console.log(result.data);
+					return //console.log(result.data);
 				}
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	return (
 		<>

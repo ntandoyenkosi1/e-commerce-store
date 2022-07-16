@@ -23,17 +23,21 @@ const Category = (props) => {
 		.then(response => response.json())
 		.then(result => { 
 			if (result.ok) {
-				setCategory(result.data)
+				return setCategory(result.data)
 			}
+			navigate("/internal-error")
 		 })
-		.catch(error => console.log('error', error));
+		.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}, [])
 	useEffect(() => {
 		var r = localStorage.getItem("data");
-		console.log(r);
+		//console.log(r);
 		if (r) {
 			setRole(JSON.parse(r));
-			console.log(JSON.parse(r).roles);
+			//console.log(JSON.parse(r).roles);
 		}
 	}, []);
 	return (

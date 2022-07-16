@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 const EditCategory = (props) => {
 	const [name, setName] = useState("");
-	const { id } = useParams()
+	const { id } = useParams();
+	const navigate = useNavigate();
 	useEffect(() => {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -23,13 +24,16 @@ const EditCategory = (props) => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					setName(result.data.name)
+					return setName(result.data.name);
 				} else {
-					alert("An error occurred");
+					navigate("/internal-error");
 				}
 			})
-			.catch((error) => console.log("error", error));
-	},[])
+			.catch((error) => {
+				//console.log("error", error);
+				navigate("/internal-error");
+			});
+	}, []);
 	function handleEdit() {
 		if (name == "") {
 			alert("Name cannot be empty");
@@ -56,19 +60,23 @@ const EditCategory = (props) => {
 				if (result.ok) {
 					return alert("Category updated successfully");
 				} else {
-					alert("An error occurred");
+					navigate("/internal-error");
 				}
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error);
+				navigate("/internal-error");
+			});
 	}
 	return (
 		<>
 			<div className='logo'>
-					<EditIcon color='secondary' fontSize='large' />
-				</div>
+				<EditIcon color='secondary' fontSize='large' />
+			</div>
 			<h1>Edit Category</h1>
 			<div>
-			<TextField variant="standard"
+				<TextField
+					variant='standard'
 					type='text'
 					id='name'
 					onChange={() =>
@@ -78,9 +86,10 @@ const EditCategory = (props) => {
 					placeholder='Category name'
 				/>
 			</div>
-			<Button variant="contained" color="secondary" onClick={handleEdit}>
+			<Button variant='contained' color='secondary' onClick={handleEdit}>
 				<SaveOutlinedIcon />
-				Save Changes</Button>
+				Save Changes
+			</Button>
 		</>
 	);
 };

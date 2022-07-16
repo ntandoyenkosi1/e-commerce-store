@@ -2,24 +2,25 @@ import { useState } from "react";
 import { Button, Input } from "@mui/material";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
 	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const navigate=useNavigate()
 	function handleSignUp() {
 		var name = document.getElementById("name").value;
 		var email = document.getElementById("email").value;
 		var password = document.getElementById("password").value;
 		if (name == null) {
-			console.log("name is not present");
+			//console.log("name is not present");
 			return;
 		}
 		if (email == null) {
-			console.log("email is not present");
+			//console.log("email is not present");
 			return;
 		}
+
 		if (password == null) {
-			console.log("email is not present");
+			//console.log("email is not present");
 			return;
 		}
 		var myHeaders = new Headers();
@@ -41,11 +42,15 @@ const SignUp = () => {
 			.then((result) => {
 				if (result.ok) {
 					alert("You have signed up successfully");
+					navigate("/login")
 					return;
 				}
-				alert("An error occured. Please try again");
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	return (
 		<>
@@ -89,7 +94,6 @@ const SignUp = () => {
 				color='secondary'
 				onClick={handleSignUp}
 			>
-				
 				Sign Up
 				<LogoutOutlinedIcon />
 			</Button>

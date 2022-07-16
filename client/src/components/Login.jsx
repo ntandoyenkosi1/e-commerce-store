@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Button, Input } from "@mui/material";
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import { useNavigate } from "react-router-dom";
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("password");
+	const navigate=useNavigate()
 	function handleLogin() {
 		if (email == "") {
 			alert("Enter email address");
@@ -34,11 +36,13 @@ const Login = () => {
 					localStorage.setItem("token", result.token);
 					localStorage.setItem("data",JSON.stringify(result.data));
 					return;
-				} else {
 				}
-				alert("An error occured");
+				navigate("/internal-error")
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => {
+				//console.log("error", error)
+				navigate("/internal-error")
+			});
 	}
 	return (
 		<>
