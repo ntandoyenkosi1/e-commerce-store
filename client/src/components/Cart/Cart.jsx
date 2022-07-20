@@ -5,84 +5,70 @@ import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import Loading from "../Loading";
 const Cart = () => {
-	const [cart, setCart] = useState([]);
-	const navigate = useNavigate();
-	useEffect(() => {
-		var requestOptions = {
-			method: "GET",
-			redirect: "follow",
-		};
-
-		fetch("http://localhost:3001/api/carts", requestOptions)
-			.then((response) => response.json())
-			.then((result) => {
-				if (result.ok) {
-					return setCart(result.data);
-        }
-        navigate("/internal-error")
-			})
-			.catch((error) => {
-				//console.log("error", error);
-				navigate("/internal-error");
-			});
-	}, []);
-	function handleRemove(id) {
-		var requestOptions = {
-			method: "DELETE",
-			redirect: "follow",
-		};
-
-		fetch(`http://localhost:3001/api/carts/${id}`, requestOptions)
-			.then((response) => response.json())
-			.then((result) => {
-				if (result.ok) {
-					setCart(cart.filter((item) => item._id !== id));
-				}
-			})
-			.catch((error) => {
-				//console.log("error", error);
-				navigate("/internal-error");
-			});
-	}
-	return (
-		<div>
-			<div className='logo'>
-				<WysiwygIcon color='secondary' fontSize='large' />
-			</div>
-      <h1>Cart</h1>
-      {cart.length == 0 && (
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    var products = JSON.parse(localStorage.getItem("cart"))
+    setCart(products)
+  }, []);
+  function handleRemove(item) {
+    var products = JSON.parse(localStorage.getItem("cart"))
+    products = products.filter(c => c.product._id != item.product._id)
+    localStorage.setItem("cart", JSON.stringify(products))
+    setCart(products)
+  }
+  function incrementCart(item) {
+    var products = JSON.parse(localStorage.getItem("cart"))
+    products = products.map((c) => {
+      if (c.product._id == item.product._id) {
+        c.quantity = c.quantity + 1
+        return c
+      }
+      return c
+    })
+    localStorage.setItem("cart", JSON.stringify(products))
+    setCart(products)
+  }
+  function decrementCart(item) {
+    var products = JSON.parse(localStorage.getItem("cart"))
+    products = products.map((c) => {
+      if (c.product._id == item.product._id && c.quantity > 1) {
+        c.quantity = c.quantity - 1
+        return c
+      }
+      return c
+    })
+    localStorage.setItem("cart", JSON.stringify(products))
+    setCart(products)
+  }
+  return (
+    <div>
+      <div className='logo'>
+        <WysiwygIcon color='secondary' fontSize='large' />
+      </div>
+      {/* {cart.length == 0 && (
         <Loading/>
+      )} */}
+      {cart && (
+        cart.map((item, index) => {
+          return (
+            <div key={index} >
+              <span>{index + 1}.</span>
+              <img src={item.product.image} width={50} height={50} />{"  "}
+              <span>{item.product.name}</span>{"  "}
+              <span >
+                R{item.product.price}
+              </span>
+              <div>
+                <button onClick={() => handleRemove(item)} title="Remove from Cart">X</button>
+                <button onClick={() => decrementCart(item)}>-</button>
+                <span>: {item.quantity}</span>
+                <button onClick={() => incrementCart(item)}>+</button>
+              </div >
+            </div>
+          )
+        })
       )}
-			{cart &&
-				cart.map((item, key) => {
-					//console.log(item);
-					return (
-						<div key={key}>
-							<span>
-								{item.product[0] && (
-									<>
-										{item.product[0].name} |{" "}
-										{item.product[0].description} | R
-										{item.product[0].price}{" "}
-										<button
-											onClick={() =>
-												handleRemove(item._id)
-											}
-										>
-											<DeleteOutlinedIcon />
-											Remove
-										</button>
-									</>
-								)}
-							</span>
-						</div>
-					);
-				})}
-			<Link to={`/cart/checkout`}>
-				<ShoppingCartCheckoutIcon />
-				Checkout
-			</Link>
-		</div>
-	);
+    </div>
+  );
 };
 export default Cart;

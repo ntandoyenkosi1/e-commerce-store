@@ -39,33 +39,54 @@ const Product = () => {
 			//console.log(JSON.parse(r).roles);
 		}
 	}, []);
-	function handleAddToCart(id, price) {
-		var myHeaders = new Headers();
-		myHeaders.append("Content-Type", "application/json");
-
-		var raw = JSON.stringify({
-			product: id,
-			quantity: 1,
-			price: price,
-		});
-		var requestOptions = {
-			method: "POST",
-			headers: myHeaders,
-			body: raw,
-			redirect: "follow",
-		};
-		fetch("http://localhost:3001/api/carts", requestOptions)
-			.then((response) => response.json())
-			.then((result) => {
-				if (result.ok) {
-					return //console.log(result.data);
+	function handleAddToCart(item) {
+		var cart=localStorage.getItem("cart")
+		if (!cart) return localStorage.setItem("cart",JSON.stringify([{product:item,quantity:1}]))
+		if(cart.includes(JSON.stringify(item))){
+			cart=JSON.parse(cart).map((c)=>{
+				if(c.product._id==item._id){
+					c.quantity=c.quantity+1
+					return c
 				}
-			})
-			.catch((error) => {
-				//console.log("error", error)
-				navigate("/internal-error")
-			});
+				return c
+			}
+			)
+			return localStorage.setItem("cart",JSON.stringify(cart))
+		}
+		else{
+			cart=JSON.parse(cart)
+			cart.push({product:item,quantity:1})
+			return localStorage.setItem("cart",JSON.stringify(cart))
+		}
 	}
+
+	// function handleAddToCart(id, price) {
+	// 	var myHeaders = new Headers();
+	// 	myHeaders.append("Content-Type", "application/json");
+
+	// 	var raw = JSON.stringify({
+	// 		product: id,
+	// 		quantity: 1,
+	// 		price: price,
+	// 	});
+	// 	var requestOptions = {
+	// 		method: "POST",
+	// 		headers: myHeaders,
+	// 		body: raw,
+	// 		redirect: "follow",
+	// 	};
+	// 	fetch("http://localhost:3001/api/carts", requestOptions)
+	// 		.then((response) => response.json())
+	// 		.then((result) => {
+	// 			if (result.ok) {
+	// 				return //console.log(result.data);
+	// 			}
+	// 		})
+	// 		.catch((error) => {
+	// 			//console.log("error", error)
+	// 			navigate("/internal-error")
+	// 		});
+	// }
 	return (
 		<>
 			<div className="logo" >
@@ -85,7 +106,7 @@ const Product = () => {
 			<Button
 				variant='contained'
 				color='secondary'
-				onClick={() => handleAddToCart(product._id, product.price)}
+				onClick={() => handleAddToCart(product)}
 			>
 				<AddShoppingCartRoundedIcon />
 				Add to cart

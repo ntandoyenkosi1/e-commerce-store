@@ -4,8 +4,10 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const products = [
+const product = [
 	{
 		name: "Product 1",
 		desc: "A nice thing",
@@ -38,26 +40,34 @@ const payments = [
 ];
 
 export default function Review() {
+	const [products, setProducts]=useState([])
+	const [total,setTotal]=useState(0)
+	useEffect(()=>{
+		var cart=JSON.parse(localStorage.getItem("cart"))
+		setProducts(cart)
+		var tot=cart.reduce((prev,curr)=>prev+(curr.product.price*curr.quantity),0)
+		setTotal(tot)
+	},[])
 	return (
 		<React.Fragment>
 			<Typography variant='h6' gutterBottom>
 				Order summary
 			</Typography>
 			<List disablePadding>
-				{products.map((product) => (
-					<ListItem key={product.name} sx={{ py: 1, px: 0 }}>
+				{products.map((item) => (
+					<ListItem key={item.product.name} sx={{ py: 1, px: 0 }}>
 						<ListItemText
-							primary={product.name}
-							secondary={product.desc}
+							primary={item.product.name}
+							secondary=""
 						/>
-						<Typography variant='body2'>{product.price}</Typography>
+						<Typography variant='body2'>R{item.product.price}</Typography>
 					</ListItem>
 				))}
 
 				<ListItem sx={{ py: 1, px: 0 }}>
 					<ListItemText primary='Total' />
 					<Typography variant='subtitle1' sx={{ fontWeight: 700 }}>
-						$34.06
+						R{total}
 					</Typography>
 				</ListItem>
 			</List>
