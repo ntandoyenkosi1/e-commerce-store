@@ -1,4 +1,5 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import React from "react";
 import Home from "./components/Home";
 import Products from "./components/Products/Products";
 import Product from "./components/Products/Product";
@@ -22,10 +23,15 @@ import Checkout from "./components/Cart/Checkout";
 import NotFound from "./components/Error/NotFound";
 import ErrorOccured from "./components/Error/ErrorOccured";
 import Loading from "./components/Loading";
+import UserContext from "./context/UserContext";
+import Footer from "./components/Footer";
 function App() {
+	const [user, setUser] = React.useState(null);
+  const value = React.useMemo(() => ({ user, setUser }), [user, setUser]);
 	return (
 		<BrowserRouter>
 			<Header />
+			<UserContext.Provider value={value}>
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/products' element={<Products />} />
@@ -49,13 +55,14 @@ function App() {
 				<Route path='/login' element={<Login />} />
 				<Route path='/sign-up' element={<SignUp />} />
 				<Route path='/profile' element={<Profile />} />
-				<Route path='/cart' element={<Cart />} />
 				<Route path='/cart/checkout' element={<Checkout />} />
 				<Route path="/test" element={<Loading/>}/>
 				<Route path='/internal-error' element={<ErrorOccured />} />
 				<Route path='/error' element={<NotFound />} />
-				<Route path='/*' element={<NotFound />} />
-			</Routes>
+					<Route path='/*' element={<NotFound />} />
+				</Routes>
+				{/* <Footer/> */}
+				</UserContext.Provider>
 		</BrowserRouter>
 	);
 }

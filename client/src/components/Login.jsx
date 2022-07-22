@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { Button, Input } from "@mui/material";
+import React, { useState, useContext, useMemo } from "react";
+import { Button, Input, Typography,Link } from "@mui/material";
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("password");
+	const {user,setUser}=useContext(UserContext)
+	const [context,setContext]=useState("")
+	// const context = useContext(UserContext);
+	// console.log(context)
 	const navigate=useNavigate()
 	function handleLogin() {
 		if (email == "") {
@@ -35,7 +40,8 @@ const Login = () => {
 				if (result.ok) {
 					alert("You have successfully logged in");
 					localStorage.setItem("token", result.token);
-					localStorage.setItem("data",JSON.stringify(result.data));
+					localStorage.setItem("data", JSON.stringify(result.data));
+					setUser(result.data)
 					return;
 				}
 				navigate("/internal-error")
@@ -47,7 +53,8 @@ const Login = () => {
 	}
 	return (
 		<>
-			<div className="logo">
+			<div className="">
+			<div>
 				<LockTwoToneIcon color="secondary" fontSize="large" />
 				</div>
 			<h1>
@@ -76,8 +83,12 @@ const Login = () => {
 					placeholder='Password'
 				/>
 			</div>
-			<Button variant="contained" color="secondary" onClick={handleLogin}><LoginOutlinedIcon/>Login</Button>
-		</>
+			<Button variant="contained" color="secondary" onClick={handleLogin}><LoginOutlinedIcon />Login</Button>
+			<Typography>
+				Do not have an account? <Link to="/signup">Sign up here</Link>
+				</Typography>
+			</div>
+			</>
 	);
 };
 export default Login;

@@ -14,12 +14,12 @@ mongoose
 		useUnifiedTopology: true,
 	})
 	.then(() => {
-		console.log("Connected to MongoDB");
+		//console.log("Connected to MongoDB");
 	})
 	.catch((err) => {
-		console.log("Error:", err.message);
+		//console.log("Error:", err.message);
 	});
 app.use(router);
 app.listen(3001, () => {
-	console.log("Server running on port 3000");
+	//console.log("Server running on port 3000");
 });
