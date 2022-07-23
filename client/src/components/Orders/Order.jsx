@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import WysiwygIcon from '@mui/icons-material/Wysiwyg';
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const Order = () => {
 	const [order, setOrder] = useState([]);
 	const { id } = useParams();

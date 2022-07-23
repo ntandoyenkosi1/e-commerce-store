@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
-import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import Loading from "../Loading";
 const Cart = () => {
   const [cart, setCart] = useState([]);
   useEffect(() => {

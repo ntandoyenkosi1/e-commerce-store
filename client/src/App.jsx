@@ -1,13 +1,13 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import React from "react";
-import Home from "./components/Home";
+import Home from "./components/Layout/Home";
 import Products from "./components/Products/Products";
 import Product from "./components/Products/Product";
 import EditProduct from "./components/Products/EditProduct";
 import DeleteProduct from "./components/Products/DeleteProduct";
 import CreateProduct from "./components/Products/CreateProduct";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
+import SignUp from "./components/User/SignUp";
+import Login from "./components/User/Login";
 import Categories from "./components/Category/Categories";
 import Category from "./components/Category/Category";
 import CreateCategory from "./components/Category/CreateCategory";
@@ -18,13 +18,13 @@ import Order from "./components/Orders/Order";
 import Profile from "./components/User/Profile";
 import Cart from "./components/Cart/Cart";
 import "./styles.css";
-import Header from "./components/Header";
+import Header from "./components/Layout/Header";
 import Checkout from "./components/Cart/Checkout";
 import NotFound from "./components/Error/NotFound";
 import ErrorOccured from "./components/Error/ErrorOccured";
-import Loading from "./components/Loading";
+import Loading from "./components/Layout/Loading";
 import UserContext from "./context/UserContext";
-import Footer from "./components/Footer";
+import Footer from "./components/Layout/Footer";
 function App() {
 	const [user, setUser] = React.useState(null);
   const value = React.useMemo(() => ({ user, setUser }), [user, setUser]);
@@ -61,7 +61,7 @@ function App() {
 				<Route path='/error' element={<NotFound />} />
 					<Route path='/*' element={<NotFound />} />
 				</Routes>
-				{/* <Footer/> */}
+				<Footer/>
 				</UserContext.Provider>
 		</BrowserRouter>
 	);

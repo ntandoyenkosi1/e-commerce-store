@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const Category = (props) => {
 	const [category, setCategory] = useState([]);
 	const [role, setRole] = useState([]);

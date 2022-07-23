@@ -2,9 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import React from "react";
 import Badge from "@mui/material/Badge";
-import CartModal from "./Cart/CartModal";
+import CartModal from "../Cart/CartModal";
 import PersonOutlineIcon from "@mui/icons-material/Permidentity";
-import logo from "../assets/loading.gif";
+import logo from "../../assets/loading.gif";
 const Header = () => {
 	const [open, setOpen] = React.useState(false);
 	const navigate = useNavigate();

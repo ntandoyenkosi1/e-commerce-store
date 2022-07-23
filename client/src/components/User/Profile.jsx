@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const Profile = () => {
 	const [user, setUser] = useState([]);
 	const navigate=useNavigate()

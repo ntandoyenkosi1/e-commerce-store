@@ -3,7 +3,7 @@ import { Button, Input, Typography,Link } from "@mui/material";
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { useNavigate } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("password");

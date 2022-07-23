@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
 	const [role, setRole] = useState([]);

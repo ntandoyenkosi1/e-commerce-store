@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import EditIcon from "@mui/icons-material/Edit";
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const EditCategory = (props) => {
 	const [name, setName] = useState("");
 	const { id } = useParams();

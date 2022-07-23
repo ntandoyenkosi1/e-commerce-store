@@ -6,7 +6,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
 import WysiwygIcon from '@mui/icons-material/Wysiwyg';
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const Product = () => {
 	const [product, setProduct] = useState([]);
 	const [role, setRole] = useState([]);

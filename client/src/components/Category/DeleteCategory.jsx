@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const DeleteCategory = () => {
 	const [name, setName] = useState("");
 	const { id } = useParams();

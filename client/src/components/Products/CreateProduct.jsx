@@ -5,7 +5,7 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useNavigate } from "react-router-dom";
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const CreateProduct = () => {
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState("");

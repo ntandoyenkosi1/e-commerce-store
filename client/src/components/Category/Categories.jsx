@@ -3,7 +3,7 @@ import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import Loading from "../Loading";
+import Loading from "../Layout/Loading";
 const Categories = () => {
 	const [categories, setCategories] = useState([]);
 	const [role, setRole] = useState([]);
