@@ -32,7 +32,7 @@ const Header = () => {
 						Account
 						<PersonOutlineIcon color='red' />
 					</span>
-					<span style={{cursor:"pointer"}} className='btn'>
+					<span onClick={()=>handleOpen()} style={{cursor:"pointer"}} className='btn'>
 						Cart
 						<Badge color='primary' variant='dot'>
 							<LocalMallOutlinedIcon color='red' />

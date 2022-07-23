@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import image from "../../assets/home-image.jpg";
 import { Button } from "react-bootstrap";
+import Slider from "./Slider";
 
 const Home = () => {
 	const context = useContext(UserContext);
@@ -23,6 +24,7 @@ const Home = () => {
 			</div>
 			<div>
 			</div>
+			<Slider/>
 		</div>
 	);
 };
