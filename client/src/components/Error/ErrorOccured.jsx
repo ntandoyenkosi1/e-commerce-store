@@ -6,7 +6,7 @@ const ErrorOccured = () => {
 	const navigate = useNavigate();
 	return (
 		<div>
-			<div className='logo'>
+			<div>
 				<ErrorOutlineIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>An internal error occured</h1>

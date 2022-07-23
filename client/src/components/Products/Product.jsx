@@ -88,9 +88,9 @@ const Product = () => {
 	// 		});
 	// }
 	return (
-		<>
-			<div className="logo" >
-				<WysiwygIcon color="secondary" fontSize="large"/>
+		<div className="center">
+			<div className="center" >
+				<WysiwygIcon style={{textAlign:"center"}} color="secondary" fontSize="large"/>
 			</div>
 			<h1>Product</h1>
 			{product.length == 0 && (
@@ -100,10 +100,9 @@ const Product = () => {
 			<img src={product.image} width='200' height='200' alt='' />
 			<div>{product.description}</div>
 			<div>R{product.price}</div>
-			<Link to={`/products/checkout/${product._id}`}>
-				<FavoriteBorderTwoToneIcon />
-				Buy</Link>{" "}
+			
 			<Button
+				
 				variant='contained'
 				color='secondary'
 				onClick={() => handleAddToCart(product)}
@@ -112,16 +111,16 @@ const Product = () => {
 				Add to cart
 			</Button>
 			{role.roles && role.roles.includes("admin") && (
-				<>
+				<div className="center">
 					<Link to={`/products/delete/${id}`}>
 						<DeleteOutlinedIcon />
 						Delete</Link>
 					<Link to={`/products/edit/${id}`}>
 						<EditOutlinedIcon />
 						Edit</Link>
-				</>
+				</div>
 			)}
-		</>
+		</div>
 	);
 };
 export default Product;

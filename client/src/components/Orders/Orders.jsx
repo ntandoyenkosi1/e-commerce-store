@@ -62,7 +62,7 @@ const Orders = () => {
 			});
 	}
 	return (
-		<>
+		<div className="center">
 			<h1>Orders</h1>
 			<h4>View Orders</h4>
 			{orders.length == 0 && (
@@ -93,7 +93,7 @@ const Orders = () => {
 					</div>
 				);
 			})}
-		</>
+		</div>
 	);
 };
 export default Orders;

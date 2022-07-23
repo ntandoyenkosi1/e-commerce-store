@@ -2,7 +2,7 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 const NotFound = () => {
 	return (
 		<div>
-			<div className='logo'>
+			<div>
 				<ErrorOutlineIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>Page not found</h1>

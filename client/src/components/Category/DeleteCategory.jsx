@@ -63,8 +63,8 @@ const DeleteCategory = () => {
 			});
 	}
 	return (
-		<>
-			<div className='logo'>
+		<div className="center">
+			<div>
 				<DeleteIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>Delete Category</h1>
@@ -95,7 +95,7 @@ const DeleteCategory = () => {
 				<CancelOutlinedIcon />
 				Cancel
 			</Button>
-		</>
+		</div>
 	);
 };
 export default DeleteCategory;

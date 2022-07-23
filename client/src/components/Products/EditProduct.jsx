@@ -79,9 +79,9 @@ const EditProduct = () => {
 		//console.log(e.target.files[0]);
 	}
 	return (
-		<>
+		<div className="center">
 			<div>
-				<div className='logo'>
+				<div >
 					<EditIcon color='secondary' fontSize='large' />
 				</div>
 				<h1>Edit Product</h1>
@@ -172,7 +172,7 @@ const EditProduct = () => {
 					</Button>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 export default EditProduct;

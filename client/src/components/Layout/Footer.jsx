@@ -1,11 +1,11 @@
-import logo from "../../assets/loading.gif";
+import logo from "../../assets/donut.png";
 import { Typography } from "@mui/material";
 const Footer = () => {
 	// add a footer to the page
 	return (
 		<div className="footer-main">
 		<footer className='footer'>
-			<span>
+			<span className="footer-logo">
 				<img className="logo" src={logo} alt='loading' />
 			</span>
 			<span className='footer-list'>

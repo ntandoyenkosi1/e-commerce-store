@@ -39,7 +39,7 @@ const Cart = () => {
   }
   return (
     <div>
-      <div className='logo'>
+      <div>
         <WysiwygIcon color='secondary' fontSize='large' />
       </div>
       {/* {cart.length == 0 && (

@@ -60,7 +60,7 @@ const Slider = () => {
 		}
 	}
 	return (
-		<>
+		<div className="center">
 			
 			{products.length==0 && (
 				<Loading/>
@@ -92,19 +92,9 @@ const Slider = () => {
 							<div className='card-item'>R {item.price} </div>
 							{/* <Link to={`/products/checkout/${item._id}`}>Buy</Link>{" "} */}
 							<div className='card-item'>
+								
 								<Button
-									variant='contained'
-									color='secondary'
-									onClick={() =>
-										navigate(
-											`/products/checkout/${item._id}`
-										)
-									}
-								>
-									<FavoriteBorderTwoToneIcon/>
-									Buy
-								</Button>
-								<Button
+									fullWidth
 									variant='contained'
 									color='secondary'
 									onClick={() =>
@@ -115,28 +105,14 @@ const Slider = () => {
 									Add To Cart
 								</Button>
 							</div>
-							<Link to={`/products/${item._id}`}>
-								<VisibilityOutlinedIcon/>
-								View</Link>{" "}
-							{role.roles.includes("admin") && (
-								<>
-									<Link to={`/products/edit/${item._id}`}>
-										<EditOutlinedIcon/>
-										Edit
-									</Link>
-									<Link to={`/products/delete/${item._id}`}>
-										<DeleteOutlinedIcon/>
-										Delete
-									</Link>
-								</>
-							)}
+							
 						</div>
 					);
         })}
           
         </div>
         </span>
-		</>
+		</div>
 	);
 }
 export default Slider

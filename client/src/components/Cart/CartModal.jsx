@@ -55,7 +55,7 @@ const CartModal = (props) => {
 		getTotal();
 	}, []);
 	return (
-		<>
+		<div className="center">
 			<Modal
 				aria-labelledby='transition-modal-title'
 				aria-describedby='transition-modal-description'
@@ -71,7 +71,7 @@ const CartModal = (props) => {
 					console.log("Modal loaded")
 				}}
 			>
-				<>
+				<div className="center">
 					<Fade in={props.open}>
 						<Box sx={style}>
 							<Typography
@@ -83,7 +83,7 @@ const CartModal = (props) => {
 							</Typography>
 							{total == 0 && <div>Your cart is empty</div>}
 							{total !=0 &&(
-									<>
+									<div className="center">
 										<Cart />
 										<div>
 											<Typography>
@@ -105,13 +105,13 @@ const CartModal = (props) => {
 											<ShoppingCartCheckoutIcon />
 											Checkout
 										</Link>
-									</>
+									</div>
 								)}
 						</Box>
 					</Fade>
-				</>
+				</div>
 			</Modal>
-		</>
+		</div>
 	);
 };
 export default CartModal;

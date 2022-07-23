@@ -42,7 +42,7 @@ const CreateCategory = () => {
 			});
 	}
 	return (
-		<>
+		<div className="center">
 			<div className="icon">
 				<AddCircleIcon color="secondary" fontSize="large" />
 			</div>
@@ -64,7 +64,7 @@ const CreateCategory = () => {
 				<SaveOutlinedIcon />
 				Save
 			</Button>
-		</>
+		</div>
 	);
 };
 export default CreateCategory;

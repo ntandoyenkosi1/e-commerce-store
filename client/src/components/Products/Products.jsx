@@ -59,7 +59,7 @@ const Products = () => {
 		}
 	}
 	return (
-		<>
+		<div className="center">
 			<h1>Products</h1>
 			{role && role.roles && role.roles.includes("admin") && (
 				<div>
@@ -75,7 +75,8 @@ const Products = () => {
 						<div
 							className='card'
 							key={key}
-							style={{ backgroundColor: "white" }}
+							style={{ backgroundColor: "white",cursor:"pointer" }}
+							onClick={()=>navigate(`/products/${item._id}`)}
 						>
 							<img
 								src={item.image}
@@ -93,23 +94,11 @@ const Products = () => {
 								{item.name}
 							</div>
 							<div className='card-item'>R {item.price} </div>
-							{/* <Link to={`/products/checkout/${item._id}`}>Buy</Link>{" "} */}
 							<div className='card-item'>
 								<Button
 									variant='contained'
 									color='secondary'
-									onClick={() =>
-										navigate(
-											`/products/checkout/${item._id}`
-										)
-									}
-								>
-									<FavoriteBorderTwoToneIcon/>
-									Buy
-								</Button>
-								<Button
-									variant='contained'
-									color='secondary'
+									fullWidth
 									onClick={() =>
 										handleAddToCart(item)
 									}
@@ -118,11 +107,11 @@ const Products = () => {
 									Add To Cart
 								</Button>
 							</div>
-							<Link to={`/products/${item._id}`}>
+							{/* <Link to={`/products/${item._id}`}>
 								<VisibilityOutlinedIcon/>
-								View</Link>{" "}
+								View</Link>{" "} */}
 							{role.roles.includes("admin") && (
-								<>
+								<div className="center">
 									<Link to={`/products/edit/${item._id}`}>
 										<EditOutlinedIcon/>
 										Edit
@@ -131,13 +120,13 @@ const Products = () => {
 										<DeleteOutlinedIcon/>
 										Delete
 									</Link>
-								</>
+								</div>
 							)}
 						</div>
 					);
 				})}
 			</div>
-		</>
+		</div>
 	);
 };
 

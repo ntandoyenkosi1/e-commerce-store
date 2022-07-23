@@ -70,8 +70,8 @@ const EditCategory = (props) => {
 			});
 	}
 	return (
-		<>
-			<div className='logo'>
+		<div className="center">
+			<div>
 				<EditIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>Edit Category</h1>
@@ -94,7 +94,7 @@ const EditCategory = (props) => {
 				<SaveOutlinedIcon />
 				Save Changes
 			</Button>
-		</>
+		</div>
 	);
 };
 export default EditCategory;

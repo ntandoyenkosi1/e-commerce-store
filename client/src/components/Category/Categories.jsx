@@ -46,7 +46,7 @@ const Categories = () => {
 		}
 	}, []);
 	return (
-		<>
+		<div className="center">
 			<div>
 				<h1>Categories</h1>
 				{role.roles && role.roles.includes("admin") && (
@@ -66,7 +66,7 @@ const Categories = () => {
 								View
 							</Link>
 							{role.roles.includes("admin") && (
-								<>
+								<div className="center">
 									<Link to={`/category/edit/${category._id}`}>
 										<EditOutlinedIcon />
 										Edit
@@ -77,13 +77,13 @@ const Categories = () => {
 										<DeleteOutlinedIcon />
 										Delete
 									</Link>
-								</>
+								</div>
 							)}
 						</div>
 					);
 				})}
 			</div>
-		</>
+		</div>
 	);
 };
 export default Categories;

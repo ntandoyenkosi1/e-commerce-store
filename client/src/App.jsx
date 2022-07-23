@@ -17,7 +17,6 @@ import Orders from "./components/Orders/Orders";
 import Order from "./components/Orders/Order";
 import Profile from "./components/User/Profile";
 import Cart from "./components/Cart/Cart";
-import "./styles.css";
 import Header from "./components/Layout/Header";
 import Checkout from "./components/Cart/Checkout";
 import NotFound from "./components/Error/NotFound";

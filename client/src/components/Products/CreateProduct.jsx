@@ -48,7 +48,7 @@ const CreateProduct = () => {
 		//console.log(e.target.files[0]);
 	}
 	return (
-		<>
+		<div className="center">
 			<div>
 			<div className="icon">
 				<AddCircleIcon color="secondary" fontSize="large" />
@@ -145,7 +145,7 @@ const CreateProduct = () => {
 					Create
 				</Button>
 			</div>
-		</>
+		</div>
 	);
 };
 export default CreateProduct;

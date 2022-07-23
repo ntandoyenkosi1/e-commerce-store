@@ -39,8 +39,8 @@ const Category = (props) => {
 		}
 	}, []);
 	return (
-		<>
-			<div className='logo'>
+		<div className="center">
+			<div>
 				<WysiwygIcon color='secondary' fontSize='large' />
 			</div>
 			<div>
@@ -55,7 +55,7 @@ const Category = (props) => {
 					{category.name}
 				</div>
 				{role.roles && role.roles.includes("admin") && (
-					<>
+					<div className="center">
 						<button
 							onClick={() => navigate(`/category/edit/${id}`)}
 						>
@@ -66,10 +66,10 @@ const Category = (props) => {
 							<DeleteOutlinedIcon />
 							Delete
 						</Link>
-					</>
+					</div>
 				)}
 			</div>
-		</>
+		</div>
 	);
 };
 export default Category;

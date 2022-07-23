@@ -52,8 +52,8 @@ const Login = () => {
 			});
 	}
 	return (
-		<>
-			<div className="">
+		<div className="center">
+			<div className="center">
 			<div>
 				<LockTwoToneIcon color="secondary" fontSize="large" />
 				</div>
@@ -85,10 +85,10 @@ const Login = () => {
 			</div>
 			<Button variant="contained" color="secondary" onClick={handleLogin}><LoginOutlinedIcon />Login</Button>
 			<Typography>
-				Do not have an account? <Link to="/signup">Sign up here</Link>
+				Do not have an account? <span style={{cursor:"pointer",textDecoration:"underline", color:"red"}} onClick={()=>navigate("/sign-up")}>Sign up here</span>
 				</Typography>
 			</div>
-			</>
+			</div>
 	);
 };
 export default Login;

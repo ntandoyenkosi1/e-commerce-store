@@ -4,14 +4,14 @@ import React from "react";
 import Badge from "@mui/material/Badge";
 import CartModal from "../Cart/CartModal";
 import PersonOutlineIcon from "@mui/icons-material/Permidentity";
-import logo from "../../assets/loading.gif";
+import logo from "../../assets/donut.png";
 const Header = () => {
 	const [open, setOpen] = React.useState(false);
 	const navigate = useNavigate();
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	return (
-		<>
+		<div className="center">
 			<span className='header'>
 				<span>
 					<span style={{cursor:"pointer"}} onClick={()=>navigate("/products")}>Shop&nbsp;&nbsp;{"  "}</span>
@@ -41,7 +41,7 @@ const Header = () => {
 					<CartModal open={open} handleClose={handleClose} />
 				</span>
 			</span>
-		</>
+		</div>
 	);
 };
 export default Header;

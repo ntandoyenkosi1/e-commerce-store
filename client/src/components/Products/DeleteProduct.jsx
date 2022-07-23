@@ -60,9 +60,9 @@ const DeleteProduct = () => {
 			});
 	}
 	return (
-		<>
+		<div className="center">
 			<div>
-			<div className="logo">
+			<div>
 				<DeleteIcon color="secondary" fontSize="large" />
 				</div>
 				<h1>Delete Product</h1>
@@ -141,7 +141,7 @@ const DeleteProduct = () => {
 				<CancelOutlinedIcon />
 				Cancel
 			</Button>
-		</>
+		</div>
 	);
 };
 export default DeleteProduct;

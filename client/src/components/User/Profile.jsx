@@ -29,8 +29,8 @@ const Profile = () => {
 			});
 	}, []);
 	return (
-		<>
-			<div className='logo'>
+		<div className="center">
+			<div>
 				<AccountCircleIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>Profile</h1>
@@ -40,7 +40,7 @@ const Profile = () => {
 				)}
 				</div>
 			{user.name && (
-				<>
+				<div className="center">
 					<div>
 						<b>Name:</b> {user.name}
 					</div>
@@ -48,9 +48,9 @@ const Profile = () => {
 						<b>Email:</b> {user.email}
 					</div>
 					{/* <div><b>Role:</b> {user.roles[0]}</div> */}
-				</>
+				</div>
 			)}
-		</>
+		</div>
 	);
 };
 export default Profile;

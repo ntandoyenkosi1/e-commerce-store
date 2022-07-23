@@ -53,8 +53,8 @@ const SignUp = () => {
 			});
 	}
 	return (
-		<>
-			<div className='logo'>
+		<div className="center">
+			<div>
 				<AccountCircleRoundedIcon color='secondary' fontSize='large' />
 			</div>
 			<h1>Sign Up</h1>
@@ -97,7 +97,7 @@ const SignUp = () => {
 				Sign Up
 				<LogoutOutlinedIcon />
 			</Button>
-		</>
+		</div>
 	);
 };
 export default SignUp;

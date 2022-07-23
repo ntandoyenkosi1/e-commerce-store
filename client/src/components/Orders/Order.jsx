@@ -31,10 +31,10 @@ const Order = () => {
 			});
 	}, []);
 	return (
-		<>
+		<div className="center">
 			{order.product && (
 				<div>
-					<div className="logo">
+					<div>
 						<WysiwygIcon color="secondary" fontSize="large" />
 						</div>
 					<h1>Order</h1>
@@ -51,7 +51,7 @@ const Order = () => {
 					<div><b>Date:</b> {order?.date}</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
 export default Order;
