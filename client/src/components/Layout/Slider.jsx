@@ -7,7 +7,7 @@ import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import Loading from "../Layout/Loading";
+import Loading from "./Loading";
 const Slider = () => {
   const [products, setProducts] = useState([]);
 	const [role, setRole] = useState([]);
