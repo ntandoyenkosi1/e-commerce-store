@@ -29,16 +29,14 @@ const Orders = () => {
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}, []);
 	useEffect(() => {
 		var r = localStorage.getItem("data");
-		//console.log(r);
+		 
 		if (r) {
 			setRole(JSON.parse(r));
-			//console.log(JSON.parse(r).roles);
 		}
 	}, []);
 	function handleRemove(id) {

@@ -19,14 +19,12 @@ const Order = () => {
 		fetch(`http://localhost:3001/api/sales/${id}`, requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
-				//console.log(result);
 				if (result.ok) {
 					return setOrder(result.data[0]);
 				}
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}, []);

@@ -29,7 +29,6 @@ const DeleteProduct = () => {
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}, []);
@@ -51,11 +50,9 @@ const DeleteProduct = () => {
 				if (result.ok) {
 					return alert("Product deleted successfully");
 				}
-				//console.log(result);
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}

@@ -44,10 +44,8 @@ const CartModal = (props) => {
 					return item.product.price * item.quantity;
 				})
 				.reduce((prev, current) => prev + current, 0);
-			console.log(products);
 			setTotal(products);
 		} else {
-			console.log("Nothing");
 			setTotal(0)
 		}
 	};
@@ -68,7 +66,6 @@ const CartModal = (props) => {
 				}}
 				onLoad={() => {
 					getTotal()
-					console.log("Modal loaded")
 				}}
 			>
 				<div className="center">

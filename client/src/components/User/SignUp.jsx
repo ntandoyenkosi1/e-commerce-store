@@ -11,16 +11,13 @@ const SignUp = () => {
 		var email = document.getElementById("email").value;
 		var password = document.getElementById("password").value;
 		if (name == null) {
-			//console.log("name is not present");
 			return;
 		}
 		if (email == null) {
-			//console.log("email is not present");
 			return;
 		}
 
 		if (password == null) {
-			//console.log("email is not present");
 			return;
 		}
 		var myHeaders = new Headers();
@@ -48,7 +45,6 @@ const SignUp = () => {
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}

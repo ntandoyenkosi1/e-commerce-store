@@ -37,10 +37,9 @@ const CreateProduct = () => {
 		fetch("http://localhost:3001/api/products", requestOptions)
 			.then((response) => response.text())
 			.then((result) => {
-				return //console.log(result)
+				return 
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}
@@ -126,7 +125,6 @@ const CreateProduct = () => {
 							setCategory(
 								document.getElementById("category").value
 							);
-							//console.log(category);
 						}}
 					>
 						<option value='0'></option>

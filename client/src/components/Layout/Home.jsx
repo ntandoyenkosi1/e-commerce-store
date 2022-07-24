@@ -8,7 +8,6 @@ import Section from "./Section";
 
 const Home = () => {
 	const context = useContext(UserContext);
-	console.log(context);
 	const navigate = useNavigate();
 
 	return (

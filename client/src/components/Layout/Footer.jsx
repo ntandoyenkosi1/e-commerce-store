@@ -1,6 +1,8 @@
 import logo from "../../assets/donut.png";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 const Footer = () => {
+	const navigate=useNavigate()
 	return (
 		<div className='footer-main'>
 			<footer className='footer'>

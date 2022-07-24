@@ -33,7 +33,6 @@ const Login = () => {
 		fetch("http://localhost:3001/api/login", requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
-				console.log(result)
 				if (result.ok) {
 					alert("You have successfully logged in");
 					localStorage.setItem("token", result.token);
@@ -44,7 +43,6 @@ const Login = () => {
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}

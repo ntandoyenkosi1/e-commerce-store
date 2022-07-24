@@ -4,7 +4,8 @@ import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
 const Cart = () => {
-  const { cart, setCart } = useContext(CartContext);
+  //const { cart, setCart } = useContext(CartContext);
+  const [cart, setCart] = useState([]);
   useEffect(() => {
     var products = JSON.parse(localStorage.getItem("cart"))
     setCart(products)

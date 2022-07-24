@@ -31,7 +31,6 @@ const EditCategory = (props) => {
 				}
 			})
 			.catch((error) => {
-				//console.log("error", error);
 				navigate("/internal-error");
 			});
 	}, []);
@@ -65,7 +64,6 @@ const EditCategory = (props) => {
 				}
 			})
 			.catch((error) => {
-				//console.log("error", error);
 				navigate("/internal-error");
 			});
 	}

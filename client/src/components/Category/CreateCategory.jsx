@@ -37,7 +37,6 @@ const CreateCategory = () => {
 				}
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}

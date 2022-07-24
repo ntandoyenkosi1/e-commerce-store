@@ -27,16 +27,14 @@ const Product = () => {
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}, []);
 	useEffect(() => {
 		var r = localStorage.getItem("data");
-		//console.log(r);
+		 
 		if (r) {
 			setRole(JSON.parse(r));
-			//console.log(JSON.parse(r).roles);
 		}
 	}, []);
 	function handleAddToCart(item) {
@@ -59,34 +57,6 @@ const Product = () => {
 			return localStorage.setItem("cart",JSON.stringify(cart))
 		}
 	}
-
-	// function handleAddToCart(id, price) {
-	// 	var myHeaders = new Headers();
-	// 	myHeaders.append("Content-Type", "application/json");
-
-	// 	var raw = JSON.stringify({
-	// 		product: id,
-	// 		quantity: 1,
-	// 		price: price,
-	// 	});
-	// 	var requestOptions = {
-	// 		method: "POST",
-	// 		headers: myHeaders,
-	// 		body: raw,
-	// 		redirect: "follow",
-	// 	};
-	// 	fetch("http://localhost:3001/api/carts", requestOptions)
-	// 		.then((response) => response.json())
-	// 		.then((result) => {
-	// 			if (result.ok) {
-	// 				return //console.log(result.data);
-	// 			}
-	// 		})
-	// 		.catch((error) => {
-	// 			//console.log("error", error)
-	// 			navigate("/internal-error")
-	// 		});
-	// }
 	return (
 		<div className="center">
 			<div className="center" >

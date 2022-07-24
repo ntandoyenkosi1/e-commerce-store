@@ -39,7 +39,6 @@ const EditProduct = () => {
 				navigate("/internal-error");
 			})
 			.catch((error) => {
-				//console.log("error", error);
 				navigate("/internal-error");
 			});
 	}, []);
@@ -71,7 +70,6 @@ const EditProduct = () => {
 				navigate("/internal-error");
 			})
 			.catch((error) => {
-				//console.log("error", error);
 				navigate("/internal-error");
 			});
 	}

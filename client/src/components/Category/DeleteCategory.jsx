@@ -31,7 +31,6 @@ const DeleteCategory = () => {
 				}
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error");
 			});
 	}, []);
@@ -58,7 +57,6 @@ const DeleteCategory = () => {
 				}
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error");
 			});
 	}

@@ -25,7 +25,6 @@ const Profile = () => {
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}, []);
@@ -48,7 +47,7 @@ const Profile = () => {
 					<div>
 						<b>Email:</b> {user.email}
 					</div>
-					<button style={{ cursor: "pointer" }} onClick={() => { console.log(user._id); navigate(`/orders/${user._id}`) }}>Go to orders</button>
+					<button style={{ cursor: "pointer" }} onClick={() => { navigate(`/orders/${user._id}`) }}>Go to orders</button>
 
 				</div>
 			)}

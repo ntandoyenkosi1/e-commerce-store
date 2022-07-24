@@ -28,7 +28,6 @@ const Category = (props) => {
 				navigate("/internal-error");
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error");
 			});
 	}, []);
