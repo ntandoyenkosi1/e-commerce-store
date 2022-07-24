@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Stack } from "@mui/material";
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
-import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { Button } from "@mui/material";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import ProductContext from "../../context/ProductContext";
 import Loading from "../Layout/Loading";
 const Products = () => {
-	const [products, setProducts] = useState([]);
+	const { products, setProducts } = useContext(ProductContext);
+	//const [products, setProducts] = useState([]);
 	const [role, setRole] = useState([]);
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -26,22 +26,19 @@ const Products = () => {
 				navigate("/internal-error")
 			})
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}, []);
 	useEffect(() => {
 		var r = localStorage.getItem("data");
-		//console.log(r);
 		if (r) {
 			setRole(JSON.parse(r));
-			//console.log(JSON.parse(r).roles);
 		}
 	}, []);
 	function handleAddToCart(item) {
 		var cart=localStorage.getItem("cart")
 		if (!cart) return localStorage.setItem("cart",JSON.stringify([{product:item,quantity:1}]))
-		if(cart.includes(JSON.stringify(item))){
+		if(cart?.includes(JSON.stringify(item))){
 			cart=JSON.parse(cart).map((c)=>{
 				if(c.product._id==item._id){
 					c.quantity=c.quantity+1
@@ -107,10 +104,7 @@ const Products = () => {
 									Add To Cart
 								</Button>
 							</div>
-							{/* <Link to={`/products/${item._id}`}>
-								<VisibilityOutlinedIcon/>
-								View</Link>{" "} */}
-							{role.roles.includes("admin") && (
+							{role && role.roles && role.roles.includes("admin") && (
 								<div className="center">
 									<Link to={`/products/edit/${item._id}`}>
 										<EditOutlinedIcon/>

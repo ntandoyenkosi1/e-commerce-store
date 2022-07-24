@@ -4,8 +4,10 @@ import { Button } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import Loading from "../Layout/Loading";
+import { useContext } from "react";
+import OrderContext from "../../context/OrderContext";
 const Orders = () => {
-	const [orders, setOrders] = useState([]);
+	const { orders, setOrders } = useContext(OrderContext);
 	const [role, setRole] = useState([]);
 	const {id}=useParams()
 	const navigate=useNavigate()
@@ -58,7 +60,6 @@ const Orders = () => {
 				navigate("/internal-error")
 			 })
 			.catch((error) => {
-				//console.log("error", error)
 				navigate("/internal-error")
 			});
 	}

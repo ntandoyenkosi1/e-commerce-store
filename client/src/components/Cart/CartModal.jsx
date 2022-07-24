@@ -87,9 +87,6 @@ const CartModal = (props) => {
 										<Cart />
 										<div>
 											<Typography>
-												<b>Subtotal: </b>R{subTotal}
-											</Typography>
-											<Typography>
 												<b>Shipping: </b>
 												{shipping}
 											</Typography>

@@ -1,17 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Loading from "../Layout/Loading";
+import CartegoryContext from "../../context/CategoryContext";
 const Categories = () => {
-	const [categories, setCategories] = useState([]);
+	const { categories, setCategories } = useContext(CartegoryContext);
 	const [role, setRole] = useState([]);
 	const navigate = useNavigate();
-	// read data passed to navigate object
-	const { state } = useLocation();
-	// read data from state object
-	//console.log(state, "state");
 	useEffect(() => {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");

@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Layout/Loading";
+import UserContext from "../../context/UserContext";
 const Profile = () => {
-	const [user, setUser] = useState([]);
+	const { user, setUser } = useContext(UserContext);
 	const navigate=useNavigate()
 	useEffect(() => {
-		console.log(user)
 		const id = JSON.parse(localStorage.getItem("data")).id;
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -36,11 +36,11 @@ const Profile = () => {
 			</div>
 			<h1>Profile</h1>
 			<div>
-			{user.length == 0 && (
+			{user && user.length == 0 && (
 				<Loading/>
 				)}
 				</div>
-			{user.name && (
+			{user && user.name && (
 				<div className="center">
 					<div>
 						<b>Name:</b> {user.name}

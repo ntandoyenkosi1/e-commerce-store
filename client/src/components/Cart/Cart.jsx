@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
+import { useContext } from "react";
+import CartContext from "../../context/CartContext";
 const Cart = () => {
-  const [cart, setCart] = useState([]);
+  const { cart, setCart } = useContext(CartContext);
   useEffect(() => {
     var products = JSON.parse(localStorage.getItem("cart"))
     setCart(products)

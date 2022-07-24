@@ -7,10 +7,7 @@ import UserContext from "../../context/UserContext";
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("password");
-	const {user,setUser}=useContext(UserContext)
-	const [context,setContext]=useState("")
-	// const context = useContext(UserContext);
-	// console.log(context)
+	const {setUser}=useContext(UserContext)
 	const navigate=useNavigate()
 	function handleLogin() {
 		if (email == "") {

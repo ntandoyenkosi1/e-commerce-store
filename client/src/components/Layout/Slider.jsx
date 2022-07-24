@@ -1,15 +1,12 @@
 import React from "react"
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Stack } from "@mui/material";
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
-import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import ProductContext from "../../context/ProductContext";
 import Loading from "./Loading";
 const Slider = () => {
-  const [products, setProducts] = useState([]);
+	const { products, setProducts } = useContext(ProductContext);
 	const [role, setRole] = useState([]);
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -42,7 +39,7 @@ const Slider = () => {
 	function handleAddToCart(item) {
 		var cart=localStorage.getItem("cart")
 		if (!cart) return localStorage.setItem("cart",JSON.stringify([{product:item,quantity:1}]))
-		if(cart.includes(JSON.stringify(item))){
+		if(cart?.includes(JSON.stringify(item))){
 			cart=JSON.parse(cart).map((c)=>{
 				if(c.product._id==item._id){
 					c.quantity=c.quantity+1
