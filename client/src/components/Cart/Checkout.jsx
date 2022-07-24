@@ -53,7 +53,9 @@ export default function Checkout() {
 	const handleBack = () => {
 		setActiveStep(activeStep - 1);
 	};
+	// const handleCheckout = () => {
 
+	// }
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />

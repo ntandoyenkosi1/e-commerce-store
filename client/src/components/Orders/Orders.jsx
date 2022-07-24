@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams,useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -7,6 +7,7 @@ import Loading from "../Layout/Loading";
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
 	const [role, setRole] = useState([]);
+	const {id}=useParams()
 	const navigate=useNavigate()
 	useEffect(() => {
 		var myHeaders = new Headers();
@@ -17,7 +18,7 @@ const Orders = () => {
 			headers: myHeaders,
 			redirect: "follow",
 		};
-		fetch("http://localhost:3001/api/sales", requestOptions)
+		fetch(`http://localhost:3001/api/sales/${id}`, requestOptions)
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
@@ -49,7 +50,7 @@ const Orders = () => {
 		};
 
 		fetch(`http://localhost:3001/api/sales/${id}`, requestOptions)
-			.then((response) => response.text())
+			.then((response) => response.json())
 			.then((result) => { 
 				if (result.ok) {
 					return;
@@ -75,7 +76,7 @@ const Orders = () => {
 							{item.product[0].name} |{" "}
 							{item.product[0].description} | R
 							{item.product[0].price}{" "}
-							<Link to={`/orders/${item._id}`}>
+							<Link to={`/order/${item._id}`}>
 								<VisibilityOutlinedIcon />
 								View
 							</Link>

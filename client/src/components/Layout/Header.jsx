@@ -34,7 +34,10 @@ const Header = () => {
 					</span>
 					<span onClick={()=>handleOpen()} style={{cursor:"pointer"}} className='btn'>
 						Cart
-						<Badge color='primary' variant='dot'>
+						<Badge color='primary'anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'left',
+  }} variant='dot'>
 							<LocalMallOutlinedIcon color='red' />
 						</Badge>
 					</span>

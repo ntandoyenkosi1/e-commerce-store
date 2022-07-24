@@ -6,6 +6,7 @@ const Profile = () => {
 	const [user, setUser] = useState([]);
 	const navigate=useNavigate()
 	useEffect(() => {
+		console.log(user)
 		const id = JSON.parse(localStorage.getItem("data")).id;
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -47,7 +48,8 @@ const Profile = () => {
 					<div>
 						<b>Email:</b> {user.email}
 					</div>
-					{/* <div><b>Role:</b> {user.roles[0]}</div> */}
+					<button style={{ cursor: "pointer" }} onClick={() => { console.log(user._id); navigate(`/orders/${user._id}`) }}>Go to orders</button>
+
 				</div>
 			)}
 		</div>
