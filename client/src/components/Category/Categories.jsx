@@ -42,7 +42,7 @@ const Categories = () => {
 		<div className="center">
 			<div>
 				<h1>Categories</h1>
-				{role.roles && role.roles.includes("admin") && (
+				{role && role.roles && role.roles.includes("admin") && (
 					<Link to={`/category/create`}>Create a new category</Link>
 				)}
 				<div>

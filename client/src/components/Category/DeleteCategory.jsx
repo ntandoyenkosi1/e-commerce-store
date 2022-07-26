@@ -49,9 +49,7 @@ const DeleteCategory = () => {
 			.then((response) => response.json())
 			.then((result) => {
 				if (result.ok) {
-					navigate("/category", {
-						state: { message: "Category deleted successfully" },
-					});
+					return alert("Category deleted successfully")
 				} else {
 					navigate("/internal-error");
 				}
@@ -81,18 +79,16 @@ const DeleteCategory = () => {
 					placeholder='Category name'
 				/>
 			</div>
-			<Button
-				variant='contained'
-				color='secondary'
-				onClick={handleDelete}
+			<button
+				onClick={()=>handleDelete()}
 			>
 				<SaveOutlinedIcon />
 				Confirm Deletion
-			</Button>
-			<Button variant='contained' color='danger'>
+			</button>
+			<button variant='contained' color='danger'>
 				<CancelOutlinedIcon />
 				Cancel
-			</Button>
+			</button>
 		</div>
 	);
 };

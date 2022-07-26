@@ -19,10 +19,12 @@ const Logout = () => {
 				<div>
 					<DeleteIcon color='secondary' fontSize='large' />
 				</div>
-				<h1>Delete Product</h1>
+				<h1>Logout</h1>
 			</div>
 			<div>You will be logged out of this application</div>
-			<div>Select one of the following options below.</div>
+			<div style={{ paddingBottom: "5%" }}>
+				Select one of the following options below.
+			</div>
 			<Button
 				variant='contained'
 				title='Logout of this application'
