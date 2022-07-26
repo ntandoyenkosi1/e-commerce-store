@@ -2,7 +2,9 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const app = express();
 const router = require("./routes/index");
-const cors=require("cors")
+const cors = require("cors")
+var PORT = 3001;
+process.env.NODE_ENV === "test" ? PORT = 3002 : process.env.PORT || 3001
 require("dotenv").config();
 
 app.use(cors())
@@ -13,13 +15,11 @@ mongoose
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
-	.then(() => {
-		//console.log("Connected to MongoDB");
-	})
-	.catch((err) => {
-		//console.log("Error:", err.message);
-	});
 app.use(router);
-app.listen(3001, () => {
-	//console.log("Server running on port 3000");
+// if (process.env.NODE_ENV === "test") {
+// 	PORT = 3002
+// }
+const server=app.listen(PORT, () => {
+	console.log(`Server running on port ${PORT}`);
 });
+module.exports = server;
