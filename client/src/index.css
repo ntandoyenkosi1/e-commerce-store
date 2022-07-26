@@ -61,13 +61,15 @@ h4{
 }
 .footer-main{
   margin-top: 2%;
+  padding-top: 2px;
+  border-top: 4px solid rgb(183 110 182);
 }
 .footer{
   display: flex;
   justify-content: space-evenly;
   position: absolute;
   width: 100%;
-  height: 30vh;
+  height: 96vh;
   color: #fff;
   background-color: rgb(64 37 68);
 
@@ -122,6 +124,11 @@ h4{
   left: 30%;
   color: aliceblue;
 }
+.home-button{
+  padding-right: 20%;
+  padding-left: 20%;
+  padding-top: 0%;
+}
 @keyframes slide-left {
   from {
     -webkit-transform: translateX(0);
@@ -143,13 +150,32 @@ h4{
 .section{
   text-align: center;
   left:30%;
-  border-bottom-width: 1px;
   padding-left: 25%;
   padding-right: 25%;
   padding-top: 2%;
   padding-bottom: 5%;
+  border-bottom: 4px solid rgb(183 110 182);
+  border-top: 4px solid rgb(183 110 182);
 }
 .footer-logo{
   display: flex;
   align-items: center;
+}
+.login, .signup{
+  padding-bottom: 26vh;
+}
+.profile{
+  padding-bottom: 31.5vh;
+}
+.mySelect{
+  background: #36a9a3;
+  color: #fff;
+  padding: 0 10px;
+  font-size: 16px;
+  appearance: none;
+  font-family: 'Roboto Mono', monospace;
+}
+select.mySelect option{
+color: rgb(255, 255, 255);
+  padding: 0 10px;
 }

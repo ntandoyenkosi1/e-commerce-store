@@ -29,7 +29,7 @@ const Profile = () => {
 			});
 	}, []);
 	return (
-		<div className="center">
+		<div className="center profile">
 			<div>
 				<AccountCircleIcon color='secondary' fontSize='large' />
 			</div>

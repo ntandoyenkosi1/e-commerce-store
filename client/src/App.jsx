@@ -28,6 +28,9 @@ import ProductContext from "./context/ProductContext";
 import CartContext from "./context/CartContext";
 import OrderContext from "./context/OrderContext";
 import CategoryContext from "./context/CategoryContext";
+import AllOrders from "./components/Orders/AllOrders";
+import Logout from "./components/User/Logout";
+import Users from "./components/User/Users";
 function App() {
 	const [user, setUser] = React.useState(null);
 	const [products, setProducts] = React.useState([]);
@@ -84,6 +87,7 @@ function App() {
 										path='/category'
 										element={<Categories />}
 									/>
+									<Route path="/users" element={<Users/>}/>
 									<Route
 										path='/category/:id'
 										element={<Category />}
@@ -100,10 +104,12 @@ function App() {
 										path='/category/edit/:id'
 										element={<EditCategory />}
 									/>
+									<Route path='/orders' element={<AllOrders />} />
 									<Route
 										path='/orders/:id'
 										element={<Orders />}
 									/>
+									<Route path="/logout" element={<Logout />} />
 									<Route
 										path='/order/:id'
 										element={<Order />}

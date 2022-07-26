@@ -26,7 +26,7 @@ const Home = () => {
 					<div className=''>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					</div>
-					<Link to='/products'>
+					<Link className="home-button" to='/products'>
 						Shop Now
 					</Link>
 				</div>

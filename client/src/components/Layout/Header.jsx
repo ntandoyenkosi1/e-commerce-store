@@ -7,7 +7,7 @@ import PersonOutlineIcon from "@mui/icons-material/Permidentity";
 import logo from "../../assets/donut.png";
 import UserContext from "../../context/UserContext";
 const Header = () => {
-	const {user} =useContext(UserContext)
+	const { user } = useContext(UserContext);
 	const [open, setOpen] = React.useState(false);
 	const navigate = useNavigate();
 	const handleOpen = () => setOpen(true);
@@ -42,28 +42,67 @@ const Header = () => {
 					<img className='logo' src={logo} alt='logo' />
 				</span>
 				<span>
-					{
-						(user != null && user.email) ? <>
-							<span
-						style={{ cursor: "pointer" }}
-						className='btn'
-						onClick={() => navigate("/profile")}
-					>
-						Profile
-						<PersonOutlineIcon color='red' />
-					</span>
-						</> : <>
-						<span
-						style={{ cursor: "pointer" }}
-						className='btn'
-						onClick={() => navigate("/login")}
-					>
-						Account
-						<PersonOutlineIcon color='red' />
-					</span>
-						</>
-					}
 					
+				</span>
+				<span>
+					{/* {user != null && user.email ? (
+						<>
+							<span
+								style={{ cursor: "pointer" }}
+								className='btn'
+								onClick={() => navigate("/profile")}
+							>
+								Profile
+								<PersonOutlineIcon color='red' />
+							</span>
+						</>
+					) : (
+						<>
+							<span
+								style={{ cursor: "pointer" }}
+								className='btn'
+								onClick={() => navigate("/login")}
+							>
+								Account
+								<PersonOutlineIcon color='red' />
+							</span>
+						</>
+					)} */}
+					<select
+						id='dropdown'
+						className="mySelect"
+						onChange={() => {
+							navigate(document.getElementById("dropdown").value);
+						}}
+					>
+						<option value=''>...</option>
+						{user == null && (
+							<>
+								<option value='login'>Login</option>
+								<option value='sign-up'>Register</option>
+							</>
+						)}
+						{user != null && (
+							<>
+								<option value='profile'>Profile</option>
+								<option value='orders'>Orders</option>
+								<option value='logout'>Logout</option>
+								{user && user.roles.includes("admin") && (
+									<>
+										<option value='orders'>
+											Manage Sales
+										</option>
+										<option value='users'>
+											Manage Users
+										</option>
+										<option value='category'>
+											Manage Categories
+										</option>
+									</>
+								)}
+							</>
+						)}
+					</select>
 					<span
 						onClick={() => handleOpen()}
 						style={{ cursor: "pointer" }}
