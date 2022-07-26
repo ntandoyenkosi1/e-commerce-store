@@ -27,7 +27,6 @@ describe("/POST Category", () => {
 			.set("x-auth-token", process.env.TOKEN)
 			.send(category)
 			.end((err, res) => {
-				console.log(res.body);
 				process.env.CATEGORY_ID = res.body.data._id;
 				res.should.have.status(200);
 				done();
