@@ -12,6 +12,7 @@ const Orders = () => {
 	const {id}=useParams()
 	const navigate=useNavigate()
 	useEffect(() => {
+		console.log(orders)
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
 		myHeaders.append("x-auth-token", token);
@@ -53,7 +54,7 @@ const Orders = () => {
 			.then((response) => response.json())
 			.then((result) => { 
 				if (result.ok) {
-					return;
+					return alert("Sale removed successfully");
 				}
 				navigate("/internal-error")
 			 })
@@ -72,14 +73,13 @@ const Orders = () => {
 				return (
 					<div key={key}>
 						<span>
-							{item.product[0].name} |{" "}
-							{item.product[0].description} | R
-							{item.product[0].price}{" "}
+							{item.date.slice(0, 10)}|{"  "} 
+							{item.product.length} items {  } ordered
 							<Link to={`/order/${item._id}`}>
 								<VisibilityOutlinedIcon />
 								View
 							</Link>
-							{role.roles.includes("admin") && (
+							{role && role.roles && role.roles.includes("admin") && (
 								<Button
 									variant='contained'
 									color='secondary'

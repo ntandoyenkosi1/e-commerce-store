@@ -31,11 +31,14 @@ const button = {
 };
 const CartModal = (props) => {
 	const [open, setOpen] = React.useState(false);
+	const [cart, setCart] = React.useState([]);
 	const [total, setTotal] = useState(0);
 	const [shipping, setShipping] = useState("Free");
 	const [subTotal, setSubtotal] = useState(0);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	const cartValue = React.useMemo(
+		() => ({ cart, setCart }), [cart, setCart]);
 	const getTotal = () => {
 		var products = JSON.parse(localStorage.getItem("cart"));
 		if (products) {
@@ -49,11 +52,21 @@ const CartModal = (props) => {
 			setTotal(0)
 		}
 	};
+	const updateCart = () => {
+		var products = JSON.parse(localStorage.getItem("cart"));
+		if (products) {
+			setCart(products);
+		}
+	}
+	useEffect(() => {
+		console.log(1)
+	},[cart])
 	useEffect(() => {
 		getTotal();
+		updateCart();
 	}, []);
 	return (
-		<div className="center">
+		<div  className="center">
 			<Modal
 				aria-labelledby='transition-modal-title'
 				aria-describedby='transition-modal-description'
@@ -66,6 +79,7 @@ const CartModal = (props) => {
 				}}
 				onLoad={() => {
 					getTotal()
+					updateCart()
 				}}
 			>
 				<div className="center">
@@ -75,13 +89,14 @@ const CartModal = (props) => {
 								id='transition-modal-title'
 								variant='h6'
 								component='h2'
+								
 							>
 								My Cart
 							</Typography>
-							{total == 0 && <div>Your cart is empty</div>}
-							{total !=0 &&(
+							{cart.length==0 && <div>Your cart is empty</div>}
+							{cart.length !=0 &&(
 									<div className="center">
-										<Cart />
+									<Cart data={cart} setCart={setCart} />
 										<div>
 											<Typography>
 												<b>Shipping: </b>
@@ -93,8 +108,8 @@ const CartModal = (props) => {
 										</div>
 
 										<Link
-											onClick={() => props.handleClose()}
-											to={`/cart/checkout`}
+										onClick={() => props.handleClose()}
+										to={`/cart/checkout`}
 										>
 											<ShoppingCartCheckoutIcon />
 											Checkout

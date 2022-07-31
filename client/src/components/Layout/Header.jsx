@@ -7,8 +7,19 @@ import PersonOutlineIcon from "@mui/icons-material/Permidentity";
 import logo from "../../assets/donut.png";
 import UserContext from "../../context/UserContext";
 const Header = () => {
-	const { user } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 	const [open, setOpen] = React.useState(false);
+	if (!user) {
+		try {
+			const user = JSON.parse(localStorage.getItem("data"));
+			const token = localStorage.getItem("token");
+			console.log(user, token);
+		if (token) {
+			setUser(user);
+		}
+		}
+		catch{}
+	}
 	const navigate = useNavigate();
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -85,12 +96,16 @@ const Header = () => {
 						{user != null && (
 							<>
 								<option value='profile'>Profile</option>
-								<option value='orders'>Orders</option>
-								<option value='logout'>Logout</option>
+								{user && user.id && user.roles.includes(`client`) && (
+									<option value={`orders/${user.id}`}>Your Orders</option>
+								)}
+								{user && user._id && user.roles.includes(`client`) && (
+									<option value={`orders/${user._id}`}>Your Orders</option>
+								)}
 								{user && user.roles.includes("admin") && (
 									<>
 										<option value='orders'>
-											Manage Sales
+											Manage Orders
 										</option>
 										<option value='users'>
 											Manage Users
@@ -100,6 +115,7 @@ const Header = () => {
 										</option>
 									</>
 								)}
+								<option value='logout'>Logout</option>
 							</>
 						)}
 					</select>

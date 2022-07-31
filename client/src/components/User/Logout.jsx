@@ -6,11 +6,15 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Loading from "../Layout/Loading";
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
 const Logout = () => {
+	const {setUser} = useContext(UserContext);
 	const navigate = useNavigate();
 	const handleLogout = () => {
 		localStorage.removeItem("token");
-		localStorage.removeItem("user");
+		localStorage.removeItem("data");
+		setUser(null);
 		navigate("/login");
 	};
 	return (

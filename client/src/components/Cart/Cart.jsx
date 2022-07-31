@@ -3,18 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
-const Cart = () => {
+const Cart = (props) => {
   //const { cart, setCart } = useContext(CartContext);
-  const [cart, setCart] = useState([]);
+  //const [cart, setCart] = useState([]);
   useEffect(() => {
+    console.log(props)
     var products = JSON.parse(localStorage.getItem("cart"))
-    setCart(products)
+    props.setCart(products)
   }, []);
   function handleRemove(item) {
     var products = JSON.parse(localStorage.getItem("cart"))
     products = products.filter(c => c.product._id != item.product._id)
     localStorage.setItem("cart", JSON.stringify(products))
-    setCart(products)
+    props.setCart(products)
   }
   function incrementCart(item) {
     var products = JSON.parse(localStorage.getItem("cart"))
@@ -26,7 +27,7 @@ const Cart = () => {
       return c
     })
     localStorage.setItem("cart", JSON.stringify(products))
-    setCart(products)
+    props.setCart(products)
   }
   function decrementCart(item) {
     var products = JSON.parse(localStorage.getItem("cart"))
@@ -38,18 +39,15 @@ const Cart = () => {
       return c
     })
     localStorage.setItem("cart", JSON.stringify(products))
-    setCart(products)
+    props.setCart(products)
   }
   return (
     <div>
       <div>
         <WysiwygIcon color='secondary' fontSize='large' />
       </div>
-      {/* {cart.length == 0 && (
-        <Loading/>
-      )} */}
-      {cart && (
-        cart.map((item, index) => {
+      {props && props.data && (
+        props.data.map((item, index) => {
           return (
             <div key={index} >
               <span>{index + 1}.</span>

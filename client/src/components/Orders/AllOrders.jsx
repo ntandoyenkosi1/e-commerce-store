@@ -9,7 +9,8 @@ import OrderContext from "../../context/OrderContext";
 const AllOrders = () => {
 	const { orders, setOrders } = useContext(OrderContext);
 	const [role, setRole] = useState([]);
-	const navigate=useNavigate()
+	const navigate = useNavigate()
+	console.log(orders)
 	useEffect(() => {
 		var myHeaders = new Headers();
 		var token = localStorage.getItem("token");
@@ -72,11 +73,11 @@ const AllOrders = () => {
 					<div key={key}>
             <span>
               {item.date.slice(0, 10)}|{" "}
-              {item.user[0].name}|{" "}
-              {item.user[0].email}{" "}
-							{item.product[0].name} |{" "}
-							{item.product[0].description} | R
-							{item.product[0].price}{" "}
+              {item?.user[0]?.name}|{" "}
+              {item?.user[0]?.email}{" "}
+							{item?.product[0]?.name} |{" "}
+							{item?.product[0]?.description} | R
+							{item?.product[0]?.price}{" "}
 							<Link to={`/order/${item._id}`}>
 								<VisibilityOutlinedIcon />
 								View

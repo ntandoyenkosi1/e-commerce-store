@@ -6,9 +6,10 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProductContext from "../../context/ProductContext";
 import Loading from "../Layout/Loading";
+import CartContext from '../../context/CartContext';
 const Products = () => {
 	const { products, setProducts } = useContext(ProductContext);
-	//const [products, setProducts] = useState([]);
+	
 	const [role, setRole] = useState([]);
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -47,7 +48,9 @@ const Products = () => {
 				return c
 			}
 			)
-			return localStorage.setItem("cart",JSON.stringify(cart))
+			localStorage.setItem("cart", JSON.stringify(cart))
+			var products = JSON.parse(localStorage.getItem("cart"))
+			return setCart(products)
 		}
 		else{
 			cart=JSON.parse(cart)
@@ -73,16 +76,18 @@ const Products = () => {
 							className='card'
 							key={key}
 							style={{ backgroundColor: "white",cursor:"pointer" }}
-							onClick={()=>navigate(`/products/${item._id}`)}
+							
 						>
 							<img
 								src={item.image}
 								width='200'
 								height='200'
 								alt=''
+								onClick={()=>navigate(`/products/${item._id}`)}
 							/>
 							<div
 								className='card-item'
+								onClick={()=>navigate(`/products/${item._id}`)}
 								style={{
 									backgroundColor: "white",
 									position: "relative",

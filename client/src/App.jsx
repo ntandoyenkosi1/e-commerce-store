@@ -50,7 +50,8 @@ function App() {
 		() => ({ orders, setOrders }),
 		[orders, setOrders]
 	);
-	const cartValue = React.useMemo(() => ({ cart, setCart }), [cart, setCart]);
+	const cartValue = React.useMemo(
+		() => ({ cart, setCart }), [cart, setCart]);
 	return (
 		<BrowserRouter>
 			<UserContext.Provider value={value}>

@@ -15,7 +15,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
-
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 function Copyright() {
 	return (
 		<Typography variant='body2' color='text.secondary' align='center'>
@@ -44,18 +46,55 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export default function Checkout() {
+	const navigate=useNavigate()
+	const { user } = useContext(UserContext)
+	
 	const [activeStep, setActiveStep] = React.useState(0);
-
 	const handleNext = () => {
 		setActiveStep(activeStep + 1);
 	};
-
 	const handleBack = () => {
 		setActiveStep(activeStep - 1);
 	};
-	// const handleCheckout = () => {
+	const handleCheckout = () => {
+		var products = JSON.parse(localStorage.getItem("cart"));
+		//const user = JSON.parse(localStorage.getItem("data"));
+		console.log(user, "user")
+		var ids = [];
+		products.forEach((item) => {
+			for (var i = 0; i < item.quantity; i++) {
+				ids.push(item.product._id);
+			}
+		});
+		var myHeaders = new Headers();
+		var token = localStorage.getItem("token");
+		myHeaders.append("x-auth-token", token);
+		myHeaders.append("Content-Type", "application/json");
 
-	// }
+		var raw = JSON.stringify({
+			product: ids,
+			quantity: 1,
+			price: 100,
+			user: user.id,
+		});
+
+		var requestOptions = {
+			method: "POST",
+			headers: myHeaders,
+			body: raw,
+			redirect: "follow",
+		};
+
+		fetch("http://localhost:3001/api/sales", requestOptions)
+			.then((response) => response.json())
+			.then((result) => {
+				if (result.ok) {
+					localStorage.removeItem("cart");
+					return handleNext();
+				}
+			})
+			.catch((error) => console.log("error", error));
+	};
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
@@ -90,11 +129,12 @@ export default function Checkout() {
 									Thank you for your order.
 								</Typography>
 								<Typography variant='subtitle1'>
-									Your order number is #2001539. We have
+									We have
 									emailed your order confirmation, and will
 									send you an update when your order has
 									shipped.
 								</Typography>
+								<button onClick={()=>navigate(`/orders/${user.id}`)}>View Orders</button>
 							</React.Fragment>
 						) : (
 							<React.Fragment>
@@ -113,16 +153,23 @@ export default function Checkout() {
 											Back
 										</Button>
 									)}
-
-									<Button
-										variant='contained'
-										onClick={handleNext}
-										sx={{ mt: 3, ml: 1 }}
-									>
-										{activeStep === steps.length - 1
-											? "Place order"
-											: "Next"}
-									</Button>
+									{activeStep === steps.length - 1 ? (
+										<Button
+											onClick={handleCheckout}
+											variant='contained'
+											sx={{ mt: 3, ml: 1 }}
+										>
+											Place order
+										</Button>
+									) : (
+										<Button
+											variant='contained'
+											onClick={handleNext}
+											sx={{ mt: 3, ml: 1 }}
+										>
+											Next
+										</Button>
+									)}
 								</Box>
 							</React.Fragment>
 						)}
