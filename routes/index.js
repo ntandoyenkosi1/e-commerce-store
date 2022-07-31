@@ -28,7 +28,8 @@ router.put("/api/products/:productId",[auth,client], product.updateProduct);
 router.delete("/api/products/:productId",[auth,client], product.deleteProduct);
 // Sales routes
 router.get("/api/sales",[auth,client], sale.getAllSales);
-router.get("/api/sales/:saleId",[auth,client], sale.getSalesByUserId);
+router.get("/api/sales/:userId", [auth, client], sale.getSalesByUserId);
+router.get("/api/sale/:id", [auth,client], sale.getSalesById)
 router.post("/api/sales",[auth,client], sale.createSale);
 router.put("/api/sales/:saleId",[auth,client], sale.updateSale);
 router.delete("/api/sales/:saleId",[auth,client], sale.deleteSale);

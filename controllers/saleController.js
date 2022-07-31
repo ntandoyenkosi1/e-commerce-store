@@ -16,9 +16,8 @@ const getAllSales = (req, res) => {
 };
 
 const getSalesByUserId = (req, res) => {
-	sale.find({ userId: req.params.userId })
+	sale.find({ user: req.params.userId })
 		.populate("product")
-		.populate("user")
 		.then((sales) => {
 			if (!sales) {
 				return res
@@ -142,9 +141,43 @@ const deleteSale = (req, res) => {
 				});
 		});
 };
+const getSalesById = (req, res) => {
+	sale.findById(req.params.id)
+		.populate("product")
+		.then((sales) => {
+			if (!sales) {
+				return res
+					.status(404)
+					.send({
+						ok: false,
+						error: "Sale not found with id " + req.params.id,
+					});
+			}
+			res.send({ ok: true, data: sales });
+		})
+		.catch((err) => {
+			if (err.kind === "ObjectId") {
+				return res
+					.status(404)
+					.send({
+						ok: false,
+						error: "Sales not found with id " + req.params.userId,
+					});
+			}
+			return res
+				.status(500)
+				.send({
+					ok: false,
+					message:
+						"Error retrieving sales for the user " +
+						req.params.userId,
+				});
+		});
+};
 module.exports = {
 	getAllSales,
 	getSalesByUserId,
+	getSalesById,
 	createSale,
 	updateSale,
 	deleteSale,
