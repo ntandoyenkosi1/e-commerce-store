@@ -3,7 +3,6 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import React, { useContext } from "react";
 import Badge from "@mui/material/Badge";
 import CartModal from "../Cart/CartModal";
-import PersonOutlineIcon from "@mui/icons-material/Permidentity";
 import logo from "../../assets/donut.png";
 import UserContext from "../../context/UserContext";
 const Header = () => {
