@@ -1,7 +1,6 @@
 {
   "name": "client",
   "private": true,
-  "homepage": "https://ntandoyenkosi1.github.io/e-commerce-store",
   "version": "0.0.0",
   "scripts": {
     "start": "react-scripts start",
