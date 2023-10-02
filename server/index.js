@@ -12,8 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 mongoose.connect(
-  process.env.MONGODB_URI ||
-    "mongodb+srv://qulakwedini:WKf03Chrt8WIei0A@cluster0.rrmjtcs.mongodb.net/?retryWrites=true&w=majority",
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/e-commerce-db",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
