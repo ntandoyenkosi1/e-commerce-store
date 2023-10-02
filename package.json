@@ -6,7 +6,8 @@
   "scripts": {
     "install": "cd client && npm i && cd .. && cd server && npm i",
     "start": "node server/index.js",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "seeds": "cd server && npm run seeds"
   },
   "repository": {
     "type": "git",

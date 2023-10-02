@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "seed": "node seeds""test": "mocha --timeout 10000"
+    "seeds": "node seeds",
+    "test": "mocha --timeout 10000"
   },
   "author": "",
   "license": "MIT",
