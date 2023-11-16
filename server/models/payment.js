@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-
+const mongoose = require("../config");
 const Payment = mongoose.model("Payment", {
 	method: {
 		type: String,

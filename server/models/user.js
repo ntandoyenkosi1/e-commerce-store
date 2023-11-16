@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("../config");
 
 const User = mongoose.model("User", {
 	name: {

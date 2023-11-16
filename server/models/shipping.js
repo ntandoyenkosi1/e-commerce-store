@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("../config");
 const Shipping = mongoose.model("Shipping", {
 	method: {
 		type: String,

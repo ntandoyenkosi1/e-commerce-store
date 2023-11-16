@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("../config");
 const Category = mongoose.model("Category", {
 	name: {
 		type: String,

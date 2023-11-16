@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("../config");
 const Sale = mongoose.model("Sale", {
 	product: {
 		type: [{type:mongoose.Schema.Types.ObjectId, ref:'Product'}],

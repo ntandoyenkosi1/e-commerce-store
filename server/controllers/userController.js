@@ -1,13 +1,14 @@
 const bcrypt = require("bcrypt")
-const jwt=require("jsonwebtoken")
-const User = require("../models/user");
+const jwt = require("jsonwebtoken")
+const {User} = require("../models");
 require("dotenv").config()
 const login = (req, res) => {
 	User.find({ email: req.body.email })
-		.then(async(user) => {
-			const valid = await bcrypt.compare(req.body.password,user[0].password)
+		.then(async (user) => {
+			const valid = await bcrypt.compare(req.body.password, user[0].password)
 			if (!valid) {
-				res.status(500).send({ok:false,
+				res.status(500).send({
+					ok: false,
 					error:
 						"Some error occurred while comparing passwords.",
 				});
@@ -16,8 +17,8 @@ const login = (req, res) => {
 			const token = jwt.sign({
 				id: user[0]._id,
 				email: user[0].email,
-				name:user[0].name,
-				roles:user[0].roles
+				name: user[0].name,
+				roles: user[0].roles
 			}, `${process.env.JWT_SECRET_KEY}`, { expiresIn: "30m", })
 			res.status(200).send({
 				ok: true,
@@ -25,27 +26,25 @@ const login = (req, res) => {
 				data: {
 					id: user[0]._id,
 					email: user[0].email,
-					name:user[0].name,
-					roles:user[0].roles
+					name: user[0].name,
+					roles: user[0].roles
 				}
 			})
 		})
 }
 const signUp = async (req, res) => {
-	const salt = await bcrypt.genSalt(15);
-	const password = await bcrypt.hash(req.body.password, salt)
-	const user = new User({
+	const salt = bcrypt.genSaltSync(9);
+	const password = bcrypt.hashSync(req.body.password, salt)
+	User.create({
 		name: req.body.name,
 		email: req.body.email,
 		password: password,
-		roles:["client"]
-	});
-	user.save()
-		.then((data) => {
-			res.send({ ok: true, data: data });
-		})
+		roles: ["client"]
+	}).then((data) => {
+		res.send({ ok: true, data: data });
+	})
 		.catch((err) => {
-			res.status(500).send({ok:false,error:err});
+			res.status(500).send({ ok: false, error: err });
 		});
 }
 const findAllUsers = (req, res) => {
@@ -54,7 +53,7 @@ const findAllUsers = (req, res) => {
 			res.send({ ok: true, data: users });
 		})
 		.catch((err) => {
-			res.status(500).send({ok:false,error:err});
+			res.status(500).send({ ok: false, error: err });
 		});
 };
 
@@ -62,7 +61,8 @@ const findUserById = (req, res) => {
 	User.findById(req.params.userId)
 		.then((user) => {
 			if (!user) {
-				return res.status(404).send({ ok:false,
+				return res.status(404).send({
+					ok: false,
 					message: "User not found with id " + req.params.userId,
 				});
 			}
@@ -70,11 +70,13 @@ const findUserById = (req, res) => {
 		})
 		.catch((err) => {
 			if (err.kind === "ObjectId") {
-				return res.status(404).send({ ok:false,
+				return res.status(404).send({
+					ok: false,
 					message: "User not found with id " + req.params.userId,
 				});
 			}
-			return res.status(500).send({ ok:false,
+			return res.status(500).send({
+				ok: false,
 				message: "Error retrieving user with id " + req.params.userId,
 			});
 		});
@@ -91,15 +93,17 @@ const createUser = (req, res) => {
 			res.send({ ok: true, data: data });
 		})
 		.catch((err) => {
-			res.status(500).send({ok:false,
-				error:err,
+			res.status(500).send({
+				ok: false,
+				error: err,
 			});
 		});
 };
 
 const updateUser = (req, res) => {
 	if (!req.body) {
-		return res.status(400).send({ok:false,
+		return res.status(400).send({
+			ok: false,
 			message: "User content can not be empty",
 		});
 	}
@@ -109,13 +113,14 @@ const updateUser = (req, res) => {
 			name: req.body.name,
 			email: req.body.email,
 			password: req.body.password,
-			roles:req.body.roles
+			roles: req.body.roles
 		},
 		{ new: true }
 	)
 		.then((user) => {
 			if (!user) {
-				return res.status(404).send({ ok:false,
+				return res.status(404).send({
+					ok: false,
 					message: "User not found with id " + req.params.userId,
 				});
 			}
@@ -123,11 +128,13 @@ const updateUser = (req, res) => {
 		})
 		.catch((err) => {
 			if (err.kind === "ObjectId") {
-				return res.status(404).send({ ok:false,
+				return res.status(404).send({
+					ok: false,
 					message: "User not found with id " + req.params.userId,
 				});
 			}
-			return res.status(500).send({ ok:false,
+			return res.status(500).send({
+				ok: false,
 				message: "Error updating user with id " + req.params.userId,
 			});
 		});
@@ -137,19 +144,22 @@ const deleteUser = (req, res) => {
 	User.findByIdAndRemove(req.params.userId)
 		.then((user) => {
 			if (!user) {
-				return res.status(404).send({ ok:false,
+				return res.status(404).send({
+					ok: false,
 					message: "User not found with id " + req.params.userId,
 				});
 			}
-			res.send({ok:true, message: "User deleted successfully!" });
+			res.send({ ok: true, message: "User deleted successfully!" });
 		})
 		.catch((err) => {
 			if (err.kind === "ObjectId" || err.name === "NotFound") {
-				return res.status(404).send({ ok:false,
+				return res.status(404).send({
+					ok: false,
 					message: "User not found with id " + req.params.userId,
 				});
 			}
-			return res.status(500).send({ ok:false,
+			return res.status(500).send({
+				ok: false,
 				message: "Could not delete user with id " + req.params.userId,
 			});
 		});
