@@ -64,6 +64,7 @@ const SignUp = () => {
             placeholder="Name"
             onChange={() => setName(document.getElementById("name").value)}
             value={name}
+            required
           />
         </div>
         <div className="input-text">
@@ -73,6 +74,7 @@ const SignUp = () => {
             type="text"
             id="email"
             placeholder="Email"
+            required
           />
         </div>
         <div className="input-text">
@@ -82,6 +84,7 @@ const SignUp = () => {
             type="password"
             id="password"
             placeholder="Password"
+            required
           />
         </div>
         <Button variant="contained" color="secondary" onClick={handleSignUp}>

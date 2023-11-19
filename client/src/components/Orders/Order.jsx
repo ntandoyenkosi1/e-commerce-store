@@ -16,7 +16,7 @@ const Order = () => {
       headers: myHeaders,
       redirect: "follow",
     };
-    fetch(`/api/sale/${id}`, requestOptions)
+    fetch(`/api/sales/sale/${id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.ok) {

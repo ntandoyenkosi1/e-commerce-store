@@ -7,30 +7,6 @@ import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const product = [
-	{
-		name: "Product 1",
-		desc: "A nice thing",
-		price: "$9.99",
-	},
-	{
-		name: "Product 2",
-		desc: "Another thing",
-		price: "$3.45",
-	},
-	{
-		name: "Product 3",
-		desc: "Something else",
-		price: "$6.51",
-	},
-	{
-		name: "Product 4",
-		desc: "Best thing of all",
-		price: "$14.11",
-	},
-	{ name: "Shipping", desc: "", price: "Free" },
-];
-
 const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
 const payments = [
 	{ name: "Card type", detail: "Visa" },

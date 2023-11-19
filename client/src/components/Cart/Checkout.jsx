@@ -75,7 +75,7 @@ export default function Checkout() {
       product: ids,
       quantity: 1,
       price: 100,
-      user: user.id,
+      user: user._id,
     });
 
     var requestOptions = {
