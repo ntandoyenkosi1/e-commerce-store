@@ -1,83 +1,42 @@
 import { Link, useNavigate } from "react-router-dom";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Badge from "@mui/material/Badge";
-import CartModal from "../Cart/CartModal";
 import logo from "../../assets/donut.png";
 import UserContext from "../../context/UserContext";
-const Header = () => {
+import CartModal from "../Cart/CartModal";
+const Header = ({cart, setCart}) => {
 	const { user, setUser } = useContext(UserContext);
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
+	const navigate = useNavigate();
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 	if (!user) {
 		try {
 			const user = JSON.parse(localStorage.getItem("data"));
 			const token = localStorage.getItem("token");
-			console.log(user, token);
-		if (token) {
-			setUser(user);
+			if (token) {
+				setUser(user);
+			}
 		}
-		}
-		catch{}
+		catch { }
 	}
-	const navigate = useNavigate();
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
 	return (
 		<div className='center'>
-			<span className='header'>
-				<span>
-					<span
-						style={{ cursor: "pointer" }}
-						onClick={() => navigate("/products")}
-					>
-						Shop&nbsp;&nbsp;{"  "}
-					</span>
-					<span
-						style={{ cursor: "pointer" }}
-						onClick={() => navigate("/products")}
-					>
-						New Arrivals&nbsp;&nbsp;{"  "}
-					</span>
-					<span
-						style={{ cursor: "pointer" }}
-						onClick={() => navigate("/products")}
-					>
-						Shop by category
-					</span>
-				</span>
-				<span
+			<header>
+				<div
 					style={{ cursor: "pointer" }}
 					onClick={() => navigate("/")}
 				>
 					<img className='logo' src={logo} alt='logo' />
-				</span>
-				<span>
-					
-				</span>
-				<span>
-					{/* {user != null && user.email ? (
-						<>
-							<span
-								style={{ cursor: "pointer" }}
-								className='btn'
-								onClick={() => navigate("/profile")}
-							>
-								Profile
-								<PersonOutlineIcon color='red' />
-							</span>
-						</>
-					) : (
-						<>
-							<span
-								style={{ cursor: "pointer" }}
-								className='btn'
-								onClick={() => navigate("/login")}
-							>
-								Account
-								<PersonOutlineIcon color='red' />
-							</span>
-						</>
-					)} */}
+				</div>
+				<div
+					style={{ cursor: "pointer" }}
+					onClick={() => navigate("/products")}
+				>
+					Shop&nbsp;&nbsp;{"  "}
+				</div>
+				<div>
 					<select
 						id='dropdown'
 						className="mySelect"
@@ -86,13 +45,13 @@ const Header = () => {
 						}}
 					>
 						<option value=''>...</option>
-						{user == null && (
+						{!user && (
 							<>
 								<option value='login'>Login</option>
 								<option value='sign-up'>Register</option>
 							</>
 						)}
-						{user != null && (
+						{user && (
 							<>
 								<option value='profile'>Profile</option>
 								{user && user.id && user.roles.includes(`client`) && (
@@ -118,10 +77,10 @@ const Header = () => {
 							</>
 						)}
 					</select>
-					<span
-						onClick={() => handleOpen()}
+					<div
 						style={{ cursor: "pointer" }}
 						className='btn'
+						onClick={() => handleOpen()}
 					>
 						Cart
 						<Badge
@@ -134,10 +93,10 @@ const Header = () => {
 						>
 							<LocalMallOutlinedIcon color='red' />
 						</Badge>
-					</span>
-					<CartModal open={open} handleClose={handleClose} />
-				</span>
-			</span>
+					</div>
+				</div>
+			</header>
+			<CartModal open={open} handleClose={handleClose} cart={cart} setCart={setCart}/>
 		</div>
 	);
 };

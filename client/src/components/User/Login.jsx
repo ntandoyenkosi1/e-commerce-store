@@ -30,7 +30,7 @@ const Login = () => {
       body: raw,
       redirect: "follow",
     };
-    fetch("/api/login", requestOptions)
+    fetch("/api/users/login", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.ok) {
@@ -40,7 +40,8 @@ const Login = () => {
           setUser(result.data);
           return;
         }
-        navigate("/internal-error");
+        return alert("The password or email is incorrect")
+        //navigate("/internal-error");
       })
       .catch((error) => {
         navigate("/internal-error");

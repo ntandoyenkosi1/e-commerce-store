@@ -6,19 +6,15 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProductContext from "../../context/ProductContext";
 import Loading from "../Layout/Loading";
-import CartContext from "../../context/CartContext";
-const Products = () => {
+const Products = ({ setCart }) => {
   const { products, setProducts } = useContext(ProductContext);
-
   const [role, setRole] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch("/api/products", requestOptions)
+    setCart(JSON.parse(localStorage.getItem("cart")))
+  }, [])
+  useEffect(() => {
+    fetch("/api/products")
       .then((response) => response.json())
       .then((result) => {
         if (result.ok) {
@@ -27,6 +23,7 @@ const Products = () => {
         navigate("/internal-error");
       })
       .catch((error) => {
+        console.log("An error occurred", error)
         navigate("/internal-error");
       });
   }, []);
@@ -37,27 +34,35 @@ const Products = () => {
     }
   }, []);
   function handleAddToCart(item) {
-    var cart = localStorage.getItem("cart");
-    if (!cart)
-      return localStorage.setItem(
+    var cartItems = localStorage.getItem("cart");
+    if (!cartItems) {
+      localStorage.setItem(
         "cart",
         JSON.stringify([{ product: item, quantity: 1 }])
       );
-    if (cart?.includes(JSON.stringify(item))) {
-      cart = JSON.parse(cart).map((c) => {
+      var products = JSON.parse(localStorage.getItem("cart"));
+      setCart(products);
+      return
+    }
+    if (cartItems?.includes(JSON.stringify(item))) {
+      cartItems = JSON.parse(cartItems).map((c) => {
         if (c.product._id == item._id) {
           c.quantity = c.quantity + 1;
           return c;
         }
         return c;
       });
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cartItems));
       var products = JSON.parse(localStorage.getItem("cart"));
-      return setCart(products);
+      setCart(products);
+      return
     } else {
-      cart = JSON.parse(cart);
-      cart.push({ product: item, quantity: 1 });
-      return localStorage.setItem("cart", JSON.stringify(cart));
+      cartItems = JSON.parse(cartItems);
+      cartItems.push({ product: item, quantity: 1 });
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      var products = JSON.parse(localStorage.getItem("cart"));
+      setCart(products);
+      return
     }
   }
   return (

@@ -16,7 +16,6 @@ import EditCategory from "./components/Category/EditCategory";
 import Orders from "./components/Orders/Orders";
 import Order from "./components/Orders/Order";
 import Profile from "./components/User/Profile";
-import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header";
 import Checkout from "./components/Cart/Checkout";
 import NotFound from "./components/Error/NotFound";
@@ -55,7 +54,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<UserContext.Provider value={value}>
-				<Header />
+				<Header cart={cart} setCart={setCart} />
 			</UserContext.Provider>
 			<CategoryContext.Provider value={categoriesValue}>
 				<OrderContext.Provider value={ordersValue}>
@@ -66,7 +65,7 @@ function App() {
 									<Route path='/' element={<Home />} />
 									<Route
 										path='/products'
-										element={<Products />}
+										element={<Products cart={cart} setCart={setCart} />}
 									/>
 									<Route
 										path='/products/:id'
@@ -88,7 +87,7 @@ function App() {
 										path='/category'
 										element={<Categories />}
 									/>
-									<Route path="/users" element={<Users/>}/>
+									<Route path="/users" element={<Users />} />
 									<Route
 										path='/category/:id'
 										element={<Category />}

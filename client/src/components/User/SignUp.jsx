@@ -34,7 +34,7 @@ const SignUp = () => {
       redirect: "follow",
     };
 
-    fetch("/api/signup", requestOptions)
+    fetch("/api/users/signup", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.ok) {
