@@ -42,7 +42,7 @@ This is an online e-commerce store where users can easily browse through product
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/e-commerce-store.git
+   git clone https://github.com/ntandoyenkosi1/e-commerce-store.git
    ```
 
 2. Navigate to the project directory:
@@ -54,23 +54,12 @@ This is an online e-commerce store where users can easily browse through product
 3. Install dependencies for both frontend and backend:
 
    ```bash
-   cd frontend
+   cd client
    npm install
 
-   cd ../backend
+   cd ../server
    npm install
    ```
-
-### Configuration
-
-1. Set up your Payfast credentials in the backend. You can find these in the Payfast developer dashboard.
-
-   ```bash
-   cd backend
-   cp .env.example .env
-   ```
-
-   Open the `.env` file and add your Payfast credentials.
 
 ### Database Setup
 
